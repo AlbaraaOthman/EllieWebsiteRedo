@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -7,6 +7,7 @@ import Boxy from '../components/Box';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { off } from 'process';
+
 
 
 type frontScreenProp = StackNavigationProp<RootStackParamList, 'Front'>;
@@ -18,6 +19,7 @@ function FrontScreen() {
   const [leftarr, setleftarr] = useState<string[]>([]);
   const [toparrnew, settoparrnew] = useState<string[]>([]);
   const [leftarrnew, setleftarrnew] = useState<string[]>([]);
+  const [controls, setControls] = useState(false);
   let topArr: Array<string> = [];
   let leftArr: Array<string> = [];
   let randomTopArr: Array<string> = [];
@@ -51,21 +53,32 @@ function FrontScreen() {
   }
 
   const printAndTrue = () => {
-    console.log("---------------")
-    for (var i = 0; i < leftarr.length; i++) {
-      console.log("Box" + i);
-      console.log("LEFT  " + leftarr[i]);
-      console.log("TOP" + toparr[i]);
-    }
-    for (var i = 0; i < leftarr.length; i++) {
-      var d = document.getElementById('box' + i);
-      if (d !== null) {
-        d.style.top = toparr[i] + 'px';
-        d.style.left = leftarr[i] + 'px';
-      }
-    }
+    // console.log("---------------")
+    // for (var i = 0; i < leftarr.length; i++) {
+    //   console.log("Box" + i);
+    //   console.log("LEFT  " + leftarr[i]);
+    //   console.log("TOP" + toparr[i]);
+    // }
+    // for (var i = 0; i < leftarr.length; i++) {
+    //   var d = document.getElementById('box' + i);
+    //   if (d !== null) {
+    //     d.style.top = toparr[i] + 'px';
+    //     d.style.left = leftarr[i] + 'px';
+    //   }
+    // }
     setFloatingTime(!floatingTime);
+
   }
+
+  // useEffect(() => {
+  //   for (var i = 0; i < leftarr.length; i++) {
+  //   var d = document.getElementById('box' + i);
+  //   if (d !== null) {
+  //     d.style.top = toparrnew[i];
+  //     d.style.left = leftarrnew[i];
+  //   }
+  //   };
+  // }, [toparrnew, leftarrnew]);
 
 
   const findRandom = () => {
@@ -79,24 +92,31 @@ function FrontScreen() {
     setleftarrnew(randomLeftArr);
   }
 
-  function useForceUpdate() {
-    const [value, setValue] = useState(0); // integer state
-    return () => setValue(value => value + 1); // update state to force render
-    // A function that increment 👆🏻 the previous state like here 
-    // is better than directly setting `setValue(value + 1)`
+  function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  const floatAway = () => {
+
+  const control = async () => {
+    setFloatingTime(true);
+    thisFunc()
+    await sleep(1000);
+    setFloatingTime(false);
+    await sleep(1000);
+    controlHelper();
+  }
+
+  const controlHelper = async () => {
     findRandom();
-    // for (var i = 0; i < 10; i++) {
-    //   var d = document.getElementById('box' + i);
-    //   if (d != null) {
-    //     d.style.top = randomTopArr[i] + "px";
-    //     d.style.left = randomLeftArr[i] + "px";
-    //   }
-    // }
   }
 
+  const controles = async () => {
+    thisFunc()
+    await sleep(1000);
+    setFloatingTime(false);
+    await sleep(1000);
+    controlHelper();
+  }
 
 
   console.log(window.innerHeight + "aaaa height")
@@ -109,7 +129,7 @@ function FrontScreen() {
         <div className="bg-[#151A1D] place-items-center grid grid-cols-5 grid-rows-3 gap-3 h-screen w-screen">
 
           <>
-            <div id="box0" className={`transition-all duration-700 ` + (floatingTime ? `col-start-1 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]` : ` bg-[#F8F3F4] absolute`)} >
+            <div id="box0" className={`transition-all duration-700 box ` + (floatingTime ? `col-start-1 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]` : ` bg-[#F8F3F4] absolute`)} >
               <Canvas className="canvas">
                 <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
                 <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -118,7 +138,7 @@ function FrontScreen() {
               </Canvas>
             </div>
 
-            <div id="box1" className={"transition-all duration-700 " + (floatingTime ? "col-start-2 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
+            <div id="box1" className={"transition-all duration-700 box " + (floatingTime ? "col-start-2 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
               <Canvas className="canvas">
                 <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
                 <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -127,7 +147,7 @@ function FrontScreen() {
               </Canvas>
             </div>
 
-            <div id="box2" className={"transition-all duration-700 " + (floatingTime ? "col-start-3 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
+            <div id="box2" className={"transition-all duration-700 box " + (floatingTime ? "col-start-3 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
               <Canvas className="canvas">
                 <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
                 <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -200,7 +220,7 @@ function FrontScreen() {
               </Canvas>
             </div>
             <div className="col-start-1 col-span-5 row-start-2">
-              <Button title="CONTROL" onPress={() => { floatAway() }}></Button>
+              <Button title="CONTROL" onPress={() => { control() }}></Button>
             </div>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
               <Text>Auth Screen</Text>
@@ -297,7 +317,7 @@ function FrontScreen() {
             </Canvas>
           </div>
           <div className="col-start-1 col-span-5 row-start-2">
-            <Button title="CONTROL" onPress={() => { floatAway() }}></Button>
+            <Button title="PLAY" onPress={() => { controles() }}></Button>
           </div>
         </div>
       </>
