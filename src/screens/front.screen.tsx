@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -14,11 +14,18 @@ type frontScreenProp = StackNavigationProp<RootStackParamList, 'Front'>;
 function FrontScreen() {
   const navigation = useNavigation<frontScreenProp>();
   const [floatingTime, setFloatingTime] = useState(true);
-  const [toparr, settoparr] = useState<number[]>([]);
-  const [leftarr, setleftarr] = useState<number[]>([]);
+  const [toparr, settoparr] = useState<string[]>([]);
+  const [leftarr, setleftarr] = useState<string[]>([]);
+  const [toparrnew, settoparrnew] = useState<string[]>([]);
+  const [leftarrnew, setleftarrnew] = useState<string[]>([]);
+  let topArr: Array<string> = [];
+  let leftArr: Array<string> = [];
+  let randomTopArr: Array<string> = [];
+  let randomLeftArr: Array<string> = [];
 
-  let topArr: Array<number> = [];
-  let leftArr: Array<number> = [];
+  const tempwidth = "500px";
+  const tempheight = "520px";
+  const windowSize = useRef([window.innerWidth, window.innerHeight]);
 
   const thisFunc = () => {
 
@@ -28,19 +35,19 @@ function FrontScreen() {
       let offsets = myDiv?.getBoundingClientRect();
       if (offsets?.top !== undefined) {
         console.log("balls");
-        topArr[i] = offsets?.top;
+        topArr[i] = offsets?.top + "px";
         console.log("Over here " + topArr[i]);
       }
       if (offsets?.left !== undefined) {
-        leftArr[i] = offsets?.left;
+        leftArr[i] = offsets?.left + "px";
         console.log("Over her2e " + leftArr[i]);
 
       }
     }
     setleftarr(leftArr);
     settoparr(topArr);
-
-
+    settoparrnew(topArr);
+    setleftarrnew(leftArr);
   }
 
   const printAndTrue = () => {
@@ -50,8 +57,8 @@ function FrontScreen() {
       console.log("LEFT  " + leftarr[i]);
       console.log("TOP" + toparr[i]);
     }
-    for(var i = 0; i<leftarr.length;i++){
-      var d = document.getElementById('box'+i);
+    for (var i = 0; i < leftarr.length; i++) {
+      var d = document.getElementById('box' + i);
       if (d !== null) {
         d.style.top = toparr[i] + 'px';
         d.style.left = leftarr[i] + 'px';
@@ -60,117 +67,242 @@ function FrontScreen() {
     setFloatingTime(!floatingTime);
   }
 
-  const floatAway = () => {
-    var d = document.getElementById('box1');
-    if(d!=null){
-      d.style.top="500px";
-      d.style.left="520px";
+
+  const findRandom = () => {
+    for (var i = 0; i < 10; i++) {
+      var topMax = Math.floor(Math.random() * (window.innerHeight + 1));
+      var leftMax = Math.floor(Math.random() * (window.innerWidth + 1));
+      randomTopArr.push(topMax + "px");
+      randomLeftArr.push(leftMax + "px");
     }
+    settoparrnew(randomTopArr);
+    setleftarrnew(randomLeftArr);
   }
+
+  function useForceUpdate() {
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update state to force render
+    // A function that increment 👆🏻 the previous state like here 
+    // is better than directly setting `setValue(value + 1)`
+  }
+
+  const floatAway = () => {
+    findRandom();
+    // for (var i = 0; i < 10; i++) {
+    //   var d = document.getElementById('box' + i);
+    //   if (d != null) {
+    //     d.style.top = randomTopArr[i] + "px";
+    //     d.style.left = randomLeftArr[i] + "px";
+    //   }
+    // }
+  }
+
+
+
+  console.log(window.innerHeight + "aaaa height")
+  console.log(window.innerWidth + "aaa width");
+
+  window.onscroll = () => window.scroll(0, 0); //stop scrolling
   return (
-    <>
-      <div className="bg-black place-items-center grid grid-cols-5 grid-rows-3 gap-3 h-screen w-screen">
-        <div id="box0" className={" " + (floatingTime ? "col-start-1 row-span-1 bg-[red] w-[300px] h-[300px]" : " bg-[blue] absolute w-[300px] h-[300px]")} >
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
+    (floatingTime ?
+      <>
+        <div className="bg-[#151A1D] place-items-center grid grid-cols-5 grid-rows-3 gap-3 h-screen w-screen">
 
-        <div id="box1" className={"transition-all duration-700 " + (floatingTime ? "col-start-2 row-span-1 bg-[#450a0a] w-[300px] h-[300px]" : " bg-[#450a0a] absolute w-[300px] h-[300px]")}>
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
+          <>
+            <div id="box0" className={`transition-all duration-700 ` + (floatingTime ? `col-start-1 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]` : ` bg-[#F8F3F4] absolute`)} >
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
 
-        <div id="box2" className={" " + (floatingTime ? "col-start-3 row-span-1 bg-[#eab308] w-[300px] h-[300px]" : " bg-[#eab308] absolute w-[300px] h-[300px]")}>
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
+            <div id="box1" className={"transition-all duration-700 " + (floatingTime ? "col-start-2 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
 
-        <div id="box3" className={" " + (floatingTime ? "col-start-4 row-span-1 w-[300px] h-[300px]" : "absolute w-[300px] h-[300px]")}>
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
+            <div id="box2" className={"transition-all duration-700 " + (floatingTime ? "col-start-3 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
+
+            <div id="box3" className={"bg-[#F8F3F4] transition-all duration-700 " + (floatingTime ? "col-start-4 row-span-1 w-[300px] h-[300px]" : "absolute w-[300px] h-[300px]")}>
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
 
 
-        <div id="box4" className={" " + (floatingTime ? "col-start-5 row-span-1 bg-[#84cc16] w-[300px] h-[300px]" : " bg-[#84cc16] absolute w-[300px] h-[300px]")}>
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
+            <div id="box4" className={"transition-all duration-700 " + (floatingTime ? "col-start-5 row-span-1 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
 
-        <div id="box5" className={" " + (floatingTime ? "col-start-1 row-span-3 bg-[#0891b2] w-[300px] h-[300px]" : " bg-[#0891b2] absolute w-[300px] h-[300px]")} >
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
+            <div id="box5" className={"transition-all duration-700 " + (floatingTime ? "col-start-1 row-span-3 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")} >
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
 
-        <div id="box6" className={" " + (floatingTime ? "col-start-2 row-span-3 bg-[#ec4899] w-[300px] h-[300px]" : " bg-[#ec4899] absolute w-[300px] h-[300px]")}>
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
+            <div id="box6" className={"transition-all duration-700 " + (floatingTime ? "col-start-2 row-span-3 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
 
-        <div id="box7" className={" " + (floatingTime ? "col-start-3 row-span-3 bg-[#a855f7] w-[300px] h-[300px]" : " bg-[#a855f7] absolute w-[300px] h-[300px]")}>
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
+            <div id="box7" className={"transition-all duration-700 " + (floatingTime ? "col-start-3 row-span-3 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
 
-        <div id="box8" className={" " + (floatingTime ? "col-start-4 row-span-3 bg-[#10b981] w-[300px] h-[300px]" : " bg-[#10b981] absolute w-[300px] h-[300px]")}>
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
+            <div id="box8" className={"transition-all duration-700 " + (floatingTime ? "col-start-4 row-span-3 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
 
-        <div id="box9" className={" " + (floatingTime ? "col-start-5 row-span-3 bg-[#e11d48] w-[300px] h-[300px]" : " bg-[#e11d48] absolute w-[300px] h-[300px]")}>
-          <Canvas className="canvas">
-            <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-            <ambientLight intensity={0.5} /> //adds light, stops it from being black
-            <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-            <Boxy />
-          </Canvas>
-        </div>
-        <div className = "col-start-1 col-span-5 row-start-2">
-        <Button title="CONTROL" onPress={()=>floatAway()}></Button>
-        </div>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Auth Screen</Text>
-        <Button title="Login" onPress={() => thisFunc()} />
-        <Button title="setfalse" onPress={() => printAndTrue()}></Button>
-      </View>
-      </div >
+            <div id="box9" className={"transition-all duration-700 " + (floatingTime ? "col-start-5 row-span-3 bg-[#F8F3F4] w-[300px] h-[300px]" : " bg-[#F8F3F4] absolute w-[300px] h-[300px]")}>
+              <Canvas className="canvas">
+                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Boxy />
+              </Canvas>
+            </div>
+            <div className="col-start-1 col-span-5 row-start-2">
+              <Button title="CONTROL" onPress={() => { floatAway() }}></Button>
+            </div>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <Text>Auth Screen</Text>
+              <Button title="Login" onPress={() => thisFunc()} />
+              <Button title="setfalse" onPress={() => printAndTrue()}></Button>
+            </View>
+          </>
 
-    </>
+
+        </div >
+      </>
+      :
+      <>
+        <div className="bg-[#151A1D] place-items-center grid grid-cols-5 grid-rows-3 gap-3 h-screen w-screen">
+
+          <div id="box0" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[0], left: leftarrnew[0] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div id="box1" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[1], left: leftarrnew[1] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div id="box2" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[2], left: leftarrnew[2] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div id="box3" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[3], left: leftarrnew[3] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div id="box4" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[4], left: leftarrnew[4] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div id="box5" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[5], left: leftarrnew[5] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div id="box6" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[6], left: leftarrnew[6] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div id="box7" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[7], left: leftarrnew[7] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div id="box8" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[8], left: leftarrnew[8] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div id="box9" className={`transition-all duration-700 absolute bg-[#F8F3F4] w-[300px] h-[300px]`} style={{ top: toparrnew[9], left: leftarrnew[9] }} >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+          <div className="col-start-1 col-span-5 row-start-2">
+            <Button title="CONTROL" onPress={() => { floatAway() }}></Button>
+          </div>
+        </div>
+      </>
+
+    )
   );
 }
 export default FrontScreen;
