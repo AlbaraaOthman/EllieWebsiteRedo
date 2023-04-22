@@ -182,7 +182,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          {(floatingTime ? <button id="origin" className={"bg-[red] col-start-1 col-span-5 row-start-2"}  onClick={()=>control()}>CONTROL</button> : <button id="origin" className={"bg-[blue] absolute"} style={{ width: buttonLoc[3], height: buttonLoc[4], left: buttonLoc[1], top: buttonLoc[0] }} onClick={() => { control() }}>PLAY</button>)}
+          {(floatingTime ? <button id="origin" className={"bg-[red] col-start-1 col-span-5 row-start-2"}  onClick={()=>control()}>CONTROL</button> : <button id="origin" className={"bg-[blue] absolute"} style={{ width: buttonLoc[3], height: buttonLoc[4], left: buttonLoc[1], top: buttonLoc[0] }} onClick={() => { setFloatingTime(true) }}>PLAY</button>)}
         </>
 
 
