@@ -9,6 +9,10 @@ module.exports = {
       fontSize:{
         'tiny' : '.5rem',
       },
+      transitionDuration: {
+        '2000':'2000ms',
+        '5000':'5000ms'
+      },
       colors: {
         'customblue': 'var(--blue-custom)',
         'custom-blue': '#7cdbf5',
