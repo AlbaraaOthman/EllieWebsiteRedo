@@ -8,8 +8,11 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { off } from 'process';
 import Ironh from '../components/Ironh'
-
-
+import { Component } from 'react';
+import MouseFollower from "mouse-follower";
+import gsap, { random } from "gsap";
+import { MousePosition } from '@react-hook/mouse-position';
+import { useMousePosition } from '@hookit/mouse';
 type frontScreenProp = StackNavigationProp<RootStackParamList, 'Front'>;
 
 function FrontScreen() {
@@ -21,9 +24,10 @@ function FrontScreen() {
   const [toparrnew, settoparrnew] = useState<string[]>([]);
   const [leftarrnew, setleftarrnew] = useState<string[]>([]);
   const [buttonLoc, setbuttonloc] = useState<string[]>([]);
-  const [controlFlag, setControlFlag] = useState(false);
+  const [controlFlag, setControlFlag] = useState(true);
   let topArr: Array<string> = [];
   let leftArr: Array<string> = [];
+  let tempArray = [0, 0];
   var movedFlag = 0;
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
 
@@ -63,62 +67,86 @@ function FrontScreen() {
     setbuttonloc(tempArr);
   }
 
-  const randomizePositions = () => {
-    let newTopArr: Array<string> = [];
-    let newLeftArr: Array<string> = [];
-    console.log("THE FLAG IS " + controlFlag);
-    if (controlFlag) {
-      for (let i = 0; i < 10; i++) {
-        newTopArr[i] = (Math.random() * windowSize.current[1]) + 'px';
-        newLeftArr[i] = (Math.random() * windowSize.current[0]) + 'px';
-      }
-      settoparrnew(newTopArr);
-      setleftarrnew(newLeftArr);
-    } else if (!controlFlag) {
-      settoparrnew([]);
-      setleftarrnew([]);
-      const handleWindowMouseMove = (event: any) => {
-        setCoords({
-          x: event.clientX,
+  const [mousePos, setMousePos] = useState([0]);
+  const [movedFlags, setMovedFlag] = useState(0);
+  var movedFlag = 0;
 
-          y: event.clientY,
-        });
+  const playingPositions = () => {
+    if (!controlFlag) {
+      const handleMouseMove = (event: { clientX: any; clientY: any; }) => {
+        tempArray[0] = event.clientX;
+        tempArray[1] = event.clientY;
+        setMousePos(tempArray);
+        setMovedFlag(1);
       };
-
-      window.addEventListener('mousemove', handleWindowMouseMove);
-      for (let i = 0; i < 10; i++) {
-        newTopArr[i] = (coords.y) + 'px';
-        newLeftArr[i] = (coords.x) + 'px';
-      }
-
-      settoparrnew(newTopArr);
-      setleftarrnew(newLeftArr);
-
+      window.addEventListener('mousemove', handleMouseMove);
       return () => {
         window.removeEventListener(
           'mousemove',
-          handleWindowMouseMove,
+          handleMouseMove
         );
       };
+    }
+  }
 
-
+  const randomizePositions = () => {
+    let newTopArr: Array<string> = [];
+    let newLeftArr: Array<string> = [];
+    for (let i = 0; i < 10; i++) {
+      if (controlFlag) {
+        newTopArr[i] = (Math.random() * windowSize.current[1]) + 'px';
+        newLeftArr[i] = (Math.random() * windowSize.current[0]) + 'px';
+      } else {
+        newTopArr[i] = toparrnew[i];
+        newLeftArr[i] = leftarrnew[i];
+      }
+    }
+    settoparrnew(newTopArr);
+    setleftarrnew(newLeftArr);
+    if (!controlFlag) {
+      let newTopArr: Array<string> = [];
+      let newLeftArr: Array<string> = [];
+      for (let i = 0; i < 10; i++) {
+        newTopArr[i] = mousePos[1] + 'px';
+        newLeftArr[i] = (mousePos[0]) + 'px';
+      }
+      settoparrnew(newTopArr);
+      setleftarrnew(newLeftArr);
     }
   };
 
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-  var count = 0;
+  let random: NodeJS.Timeout;
   useEffect(() => {
     thisFunc();
-    setInterval(() => {
-      randomizePositions();
-    }, 5000); // Change 3000 to whatever interval you want in milliseconds
-  }, []);
+    let random: NodeJS.Timeout;
+    if (controlFlag) {
+      random = setInterval(() => {
+        randomizePositions();
+        console.log("Dinosaurs on a space ship control");
+      }, 5000); // Change 3000 to whatever interval you want in milliseconds
+    }
+    return () => clearInterval(random);
+  }, [controlFlag]);
+
+  useEffect(() => {
+    thisFunc();
+    let random: NodeJS.Timeout;
+    if (!controlFlag) {
+      random = setInterval(() => {
+        playingPositions();
+        setleftarrnew([tempArray[0] + "px", tempArray[0] + "px", tempArray[0] + "px", tempArray[0] + "px", tempArray[0] + "px", tempArray[0] + "px", tempArray[0] + "px", tempArray[0] + "px", tempArray[0] + "px", tempArray[0] + "px",]);
+        settoparrnew([tempArray[1] + "px", tempArray[1] + "px", tempArray[1] + "px", tempArray[1] + "px", tempArray[1] + "px", tempArray[1] + "px", tempArray[1] + "px", tempArray[1] + "px", tempArray[1] + "px", tempArray[1] + "px",])
+        console.log("Dinosaurs playing")
+      }, 1000); // Change 3000 to whatever interval you want in milliseconds
+    }
+    return () => clearInterval(random);
+  }, [controlFlag]);
 
 
   const control = async () => {
+    setControlFlag(true);
     thisFunc();
     setFloatingTime(false);
-    setControlFlag(true);
   };
 
 
@@ -126,14 +154,12 @@ function FrontScreen() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  const playing = async () => {
-    setFloatingTime(true);
-    setControlFlag(false);
-    await sleep(1000);
-    thisFunc();
-    setFloatingTime(false);
-  };
 
+
+  const playing = async () => {
+    setControlFlag(false);
+    clearInterval(random);
+  };
 
   return (
     <>
