@@ -7,7 +7,7 @@ import Boxy from '../components/Box';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { off } from 'process';
-import Ironh from '../components/Ironh'
+import Ironh from '../components/Ironh.js'
 import { Component } from 'react';
 import MouseFollower from "mouse-follower";
 import gsap, { random } from "gsap";
@@ -168,7 +168,7 @@ function FrontScreen() {
   const playing = async () => {
     setControlFlag(false);
     clearInterval(random);
-    setFloatingTime(true);
+    setFloatingTime(false);
   };
 
   useEffect(() => {
