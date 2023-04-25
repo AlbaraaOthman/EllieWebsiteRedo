@@ -12,7 +12,7 @@ import { useGLTF } from '@react-three/drei'
 import { Flex, Box } from "@react-three/flex";
 
 export default function Model(props) {
-  const { nodes, materials } = useGLTF('EllieWebsiteRedo/ironh.gltf')
+  const { nodes, materials } = useGLTF('/EllieWebsiteRedo/ironh.gltf')
   return (
     <Box width="auto" height="auto" flexGrow={0.5} centerAnchor>
     <group {...props} dispose={null}>
