@@ -2,7 +2,7 @@
   "name": "ellieweb",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://AlbaraaOthman.github.io/EllieWebsiteRedo",
+  "homepage": "https://AlbaraaOthman.github.io/EllieWebsiteRedo/",
   "dependencies": {
     "@christian-martins/react-cursor-follow": "^2.0.0",
     "@hookit/mouse": "^0.2.0",
