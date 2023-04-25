@@ -134,8 +134,8 @@ function FrontScreen() {
     if (!controlFlag) {
       random = setInterval(() => {
         playingPositions();
-        setleftarrnew([tempArray[0] + "px", (tempArray[0]+50) + "px", (tempArray[0]+100) + "px", (tempArray[0]+150) + "px", (tempArray[0]+200) + "px", (tempArray[0]+250) + "px", (tempArray[0]+300) + "px", (tempArray[0]+350) + "px", (tempArray[0]+400) + "px", (tempArray[0]+450) + "px",]);
-        settoparrnew([(tempArray[1]) + "px", (tempArray[1]+50) + "px", (tempArray[1]+100) + "px", (tempArray[1]+150) + "px", (tempArray[1]+200) + "px", (tempArray[1]+250) + "px", (tempArray[1]+300) + "px", (tempArray[1]+350) + "px", (tempArray[1]+400) + "px", (tempArray[1]+450) + "px",])
+        setleftarrnew([tempArray[0] + "px", (tempArray[0] + 50) + "px", (tempArray[0] + 100) + "px", (tempArray[0] + 150) + "px", (tempArray[0] + 200) + "px", (tempArray[0] + 250) + "px", (tempArray[0] + 300) + "px", (tempArray[0] + 350) + "px", (tempArray[0] + 400) + "px", (tempArray[0] + 450) + "px",]);
+        settoparrnew([(tempArray[1]) + "px", (tempArray[1] + 50) + "px", (tempArray[1] + 100) + "px", (tempArray[1] + 150) + "px", (tempArray[1] + 200) + "px", (tempArray[1] + 250) + "px", (tempArray[1] + 300) + "px", (tempArray[1] + 350) + "px", (tempArray[1] + 400) + "px", (tempArray[1] + 450) + "px",])
         console.log("Dinosaurs playing")
       }, 1000); // Change 3000 to whatever interval you want in milliseconds
     }
@@ -143,24 +143,38 @@ function FrontScreen() {
   }, [controlFlag]);
 
 
-  const control = async () => {
-    setControlFlag(true);
+
+  useEffect(() => {
+    console.log("Dinosaurs updating " + floatingTime);
+    sleep(5000);
     thisFunc();
     setFloatingTime(false);
-  };
-
+  }, [floatingTime]);
 
   function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 
+  const control = async () => {
+    setControlFlag(true);
+    setFloatingTime(true)
+  };
+
+
+
+
 
   const playing = async () => {
     setControlFlag(false);
     clearInterval(random);
+    setFloatingTime(true);
   };
 
+  useEffect(() => {
+    thisFunc();
+    setFloatingTime(false); // Turn off floatingTime when component mounts
+  }, []);
   return (
     <>
       <div className={"bg-[#151A1D] place-items-center h-screen w-screen " + (floatingTime ? "grid grid-cols-5 grid-rows-3 gap-3 " : "")} >
@@ -256,7 +270,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          {(floatingTime ? <button id="origin" className={"bg-[red] col-start-1 col-span-5 row-start-2"} onClick={() => control()}>CONTROL</button> : <button id="origin" className={"bg-[blue] absolute duration-5000 "} style={{ width: buttonLoc[3], height: buttonLoc[4], left: buttonLoc[1], top: buttonLoc[0] }} onClick={() => { playing() }}>PLAY</button>)}
+          {(!controlFlag ? <button id="origin" className={"bg-[red] col-start-1 col-span-5 row-start-2 absolute"} style={{ width: buttonLoc[3], height: buttonLoc[4], left: buttonLoc[1], top: buttonLoc[0] }} onClick={() => control()}>CONTROL</button> : <button id="origin" className={"bg-[blue] absolute duration-5000 "} style={{ width: buttonLoc[3], height: buttonLoc[4], left: buttonLoc[1], top: buttonLoc[0] }} onClick={() => { playing() }}>PLAY</button>)}
         </>
 
 
