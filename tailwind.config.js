@@ -9,24 +9,35 @@ module.exports = {
       fontSize:{
         'tiny' : '.5rem',
       },
+      gridTemplateRows: {
+        // Simple 8 row grid
+        '9': 'repeat(9, minmax(0, 1fr))',
+      },
       transitionDuration: {
         '2000':'2000ms',
         '5000':'5000ms'
       },
+      gridRowStart: {
+        '8': '8',
+        '9': '9',
+        '10': '10',
+        '11': '11',
+        '12': '12',
+        '13': '13',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        '0': '0',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '5': '5px',
+        '6': '6px',
+        '8': '8px',
+      },
       colors: {
-        'customblue': 'var(--blue-custom)',
-        'custom-blue': '#7cdbf5',
-        'custom-blue-hover': '#92e1f7',
-        'custom-orange': '#ffb253',
-        'like-button-orange': '#ff6624',
-
-        'dback': '#23272b',
-        'dblue': '#2d545e',
-        'dblue-hover': '#94a7a87',
-        'dorange': '#a87638',
-        'lb': '#d95821',
-        'dtext':'#354155',
-        'dbord':'#75777A',
+        'darkback': '#151A1D',
+        'lightback': '#F8F3F4'
       }
     },
   },

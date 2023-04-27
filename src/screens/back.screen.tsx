@@ -1,18 +1,131 @@
-import React from 'react';
-import {View, Text, Button} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import React, { useState } from 'react';
+import { View, Text, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './RootStackPrams';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import Ironh from '../components/Ironh';
+import DrawingArea from '../components/DrawingAreaBack';
 type backScreenProp = StackNavigationProp<RootStackParamList, 'Back'>;
 
 function BackScreen() {
   const navigation = useNavigation<backScreenProp>();
+  const [playing, setPlaying] = useState(false);
+  const [xLoc, setxloc] = useState(0);
+  const [yLoc, setyloc] = useState(0);
+  let tempArray = [0, 0];
+  const [mousePos, setMousePos] = useState([0]);
+  const [movedFlags, setMovedFlag] = useState(0);
+  var movedFlag = 0;
 
+  const playingPositions = () => {
+    const handleMouseMove = (event: { clientX: any; clientY: any; }) => {
+      tempArray[0] = event.clientX;
+      tempArray[1] = event.clientY;
+      setMousePos(tempArray);
+      setMovedFlag(1);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener(
+        'mousemove',
+        handleMouseMove
+      );
+    };
+  }
+
+
+  let myDiv = document.getElementById("Obj");
+  let offsets = myDiv?.getBoundingClientRect();
+  if (offsets?.top !== undefined) {
+    setxloc(offsets?.top);
+  }
+  if (offsets?.left !== undefined) {
+    setyloc(offsets?.left);
+
+  }
+
+
+
+
+  const dx = mousePos[0] - xLoc;
+  const dy = mousePos[1] - yLoc;
+  // const angleInRadians = Math.atan2(dy, dx);
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Auth Screen</Text>
-      <Button title="Login" onPress={() => navigation.navigate('Login')} />
-    </View>
+    <>
+      <div className={"w-screen h-screen grid grid-cols-12 grid-rows-9 gap-5 " + (playing ? "bg-darkback" : "bg-[#F8F3F4]")}>
+        <div id="Draw" className={"col-start-2 col-end-6 row-start-2 row-end-7 border-5 " + (playing ? "border-lightback" : "border-darkback")}>
+          {(playing ?
+            <>
+              <DrawingArea onClearLines={undefined} clearLines={undefined} />
+
+            </>
+            :
+            <>
+              <Canvas id="Obj" className="canvas">
+                <OrbitControls enableZoom={false} /> //allows 3d rotation, also says no zooming!
+                <ambientLight intensity={0.5} /> //adds light, stops it from being black
+                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+                <Ironh />
+              </Canvas>
+            </>
+          )}
+        </div>
+
+        <ol className={"col-start-8	col-end-9 col-span-2 row-start-2 w-auto h-auto " + (!playing ? "text-darkback" : "text-lightback")}>
+          {(playing ?
+            <>
+              <li>This</li>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <li>Is</li>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <li>a</li>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <li>Place</li>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <li>Holder</li>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <li>Text</li>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <li>this</li>
+            </>
+            :
+            <>
+              <li>This</li>
+              <li>Is</li>
+              <li>a</li>
+              <li>Place</li>
+              <li>Holder</li>
+              <li>Text</li>
+              <li>this</li>
+            </>
+          )}
+
+
+        </ol>
+        <button className="bg-[#FF503C] col-start-2	col-end-4 col-span-2 row-start-8 w-auto h-auto" onClick={() => { setPlaying(false) }}>CTRL</button>
+        <button className="bg-[#FF503C] col-start-4	col-end-6 col-span-2 row-start-8 w-auto h-auto" onClick={() => { setPlaying(true) }}>PLAY</button>
+      </div >
+    </>
   );
 }
 

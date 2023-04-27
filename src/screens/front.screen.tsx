@@ -14,6 +14,7 @@ import gsap, { random } from "gsap";
 import { MousePosition } from '@react-hook/mouse-position';
 import { useMousePosition } from '@hookit/mouse';
 import DrawingArea from '../components/DrawingArea';
+import THREE from 'three';
 
 type frontScreenProp = StackNavigationProp<RootStackParamList, 'Front'>;
 
@@ -110,9 +111,16 @@ function FrontScreen() {
       let newTopArr: Array<string> = [];
       let newLeftArr: Array<string> = [];
       for (let i = 0; i < 10; i++) {
-        newTopArr[i] = mousePos[1] + 'px';
+        if(i == 1){
+        newTopArr[i] = (mousePos[1]) + 'px';
         newLeftArr[i] = (mousePos[0]) + 'px';
+        } else{
+          console.log("Locationd " + toparr[i])
+          newTopArr[i] = toparr[i];
+          newLeftArr[i] = leftarr[i];
+        }
       }
+
       settoparrnew(newTopArr);
       setleftarrnew(newLeftArr);
     }
@@ -125,7 +133,6 @@ function FrontScreen() {
     if (controlFlag) {
       random = setInterval(() => {
         randomizePositions();
-        console.log("Dinosaurs on a space ship control");
       }, 5000); // Change 3000 to whatever interval you want in milliseconds
     }
     return () => clearInterval(random);
@@ -137,9 +144,8 @@ function FrontScreen() {
     if (!controlFlag) {
       random = setInterval(() => {
         playingPositions();
-        setleftarrnew([tempArray[0] + "px", (tempArray[0] + 50) + "px", (tempArray[0] + 100) + "px", (tempArray[0] + 150) + "px", (tempArray[0] + 200) + "px", (tempArray[0] + 250) + "px", (tempArray[0] + 300) + "px", (tempArray[0] + 350) + "px", (tempArray[0] + 400) + "px", (tempArray[0] + 450) + "px",]);
-        settoparrnew([(tempArray[1]) + "px", (tempArray[1] + 50) + "px", (tempArray[1] + 100) + "px", (tempArray[1] + 150) + "px", (tempArray[1] + 200) + "px", (tempArray[1] + 250) + "px", (tempArray[1] + 300) + "px", (tempArray[1] + 350) + "px", (tempArray[1] + 400) + "px", (tempArray[1] + 450) + "px",])
-        console.log("Dinosaurs playing")
+        settoparrnew([toparr[0], (tempArray[1]) + "px", toparr[2], toparr[3], toparr[4], toparr[5], toparr[6], toparr[7], toparr[8], toparr[9]]);
+        setleftarrnew([(leftarr[0]), (tempArray[0]) + "px", leftArr[2], leftarr[3], leftarr[4], leftarr[5], leftarr[6], leftarr[7], leftarr[8], leftarr[9]])
       }, 1000); // Change 3000 to whatever interval you want in milliseconds
     }
     return () => clearInterval(random);
@@ -178,6 +184,9 @@ function FrontScreen() {
     thisFunc();
     setFloatingTime(false); // Turn off floatingTime when component mounts
   }, []);
+
+  const a = new THREE.Euler( 0, 1, 1.57, 'XYZ' );
+
   return (
 
     <>
@@ -194,7 +203,7 @@ function FrontScreen() {
             </div>
 
             <div id="box1" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-2 row-span-1  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[1], left: leftarrnew[1] })}   >
-              <Canvas className="canvas">
+              <Canvas className="canvas" onClick={() => navigation.navigate('Back')}>
                 <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
                 <ambientLight intensity={0.5} /> //adds light, stops it from being black
                 <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
