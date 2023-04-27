@@ -33,7 +33,7 @@ function FrontScreen() {
   let tempArray = [0, 0];
   var movedFlag = 0;
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
-  
+
 
 
   const thisFunc = () => {
@@ -111,10 +111,10 @@ function FrontScreen() {
       let newTopArr: Array<string> = [];
       let newLeftArr: Array<string> = [];
       for (let i = 0; i < 10; i++) {
-        if(i == 1){
-        newTopArr[i] = (mousePos[1]) + 'px';
-        newLeftArr[i] = (mousePos[0]) + 'px';
-        } else{
+        if (i == 1) {
+          newTopArr[i] = (mousePos[1]) + 'px';
+          newLeftArr[i] = (mousePos[0]) + 'px';
+        } else {
           console.log("Locationd " + toparr[i])
           newTopArr[i] = toparr[i];
           newLeftArr[i] = leftarr[i];
@@ -156,7 +156,7 @@ function FrontScreen() {
   useEffect(() => {
     sleep(5000);
     thisFunc();
-    setFloatingTime(false);
+    // setFloatingTime(false);
   }, [floatingTime]);
 
   function sleep(ms: number) {
@@ -166,7 +166,7 @@ function FrontScreen() {
 
   const control = async () => {
     setControlFlag(true);
-    setFloatingTime(true)
+    setFloatingTime(false);
   };
 
 
@@ -181,112 +181,122 @@ function FrontScreen() {
 
   useEffect(() => {
     thisFunc();
-    setFloatingTime(false); // Turn off floatingTime when component mounts
+    // setFloatingTime(false); // Turn off floatingTime when component mounts
   }, []);
 
 
   return (
 
     <>
-        {/* <DrawingArea onClearLines={undefined} clearLines={undefined} /> */}
-        <div className={"bg-[#151A1D] place-items-center h-screen w-screen " + (floatingTime ? "grid grid-cols-12 grid-rows-9 gap-3 " : "")} >
-          <>
-            <div id="box0" className={`bg-opacity-0 box ` + (floatingTime ? `col-start-1 row-span-1 w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[0], left: leftarrnew[0] })}   >
-              <Canvas className="canvas">
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Boxy />
-              </Canvas>
-            </div>
+      {/* <DrawingArea onClearLines={undefined} clearLines={undefined} /> */}
+      <div className={"bg-[#151A1D] place-items-center h-screen w-screen grid grid-cols-12 grid-rows-9 gap-3 " + (floatingTime ? "absolute " : "")} >
+        <>
+          <div id="box0" className={`bg-lightback box ` + (floatingTime ? `col-start-2 col-end-4 row-start-2 row-end-4 ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[0], left: leftarrnew[0] })}   >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
 
-            <div id="box1" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-2 row-span-1  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[1], left: leftarrnew[1] })}   >
-              <Canvas className="canvas" onClick={() => navigation.navigate('Back')}>
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Ironh />
-              </Canvas>
-            </div>
+          <div id="box1" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-4 col-end-6 row-start-2 row-end-4  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[1], left: leftarrnew[1] })}   >
+            <Canvas className="canvas" onClick={() => navigation.navigate('Back')}>
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Ironh />
+            </Canvas>
+          </div>
 
-            <div id="box2" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-3 row-span-1  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[2], left: leftarrnew[2] })}   >
-              <Canvas className="canvas">
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Boxy />
-              </Canvas>
-            </div>
+          <div id="box2" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-6 col-end-8 row-start-2 row-end-4  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[2], left: leftarrnew[2] })}   >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
 
-            <div id="box3" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-4 row-span-1  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[3], left: leftarrnew[3] })}   >
-              <Canvas className="canvas">
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Boxy />
-              </Canvas>
-            </div>
-
-
-            <div id="box4" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-5 row-span-1  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[4], left: leftarrnew[4] })}   >
-              <Canvas className="canvas">
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Boxy />
-              </Canvas>
-            </div>
-
-            <div id="box5" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-1 row-span-3  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[5], left: leftarrnew[5] })}   >
-              <Canvas className="canvas">
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Boxy />
-              </Canvas>
-            </div>
-
-            <div id="box6" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-2 row-span-3  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[6], left: leftarrnew[6] })}   >
-              <Canvas className="canvas">
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Boxy />
-              </Canvas>
-            </div>
-
-            <div id="box7" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-3 row-span-3  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[7], left: leftarrnew[7] })}   >
-              <Canvas className="canvas">
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Boxy />
-              </Canvas>
-            </div>
-
-            <div id="box8" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-4 row-span-3  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[8], left: leftarrnew[8] })}   >
-              <Canvas className="canvas">
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Boxy />
-              </Canvas>
-            </div>
-
-            <div id="box9" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-5 row-span-3  w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[9], left: leftarrnew[9] })}   >
-              <Canvas className="canvas">
-                <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Boxy />
-              </Canvas>
-            </div>
-
-            {(!controlFlag ? <button id="origin" className={"bg-[red] row-start-2 absolute flex flex-col items-center justify-center"} style={{left: buttonLoc[1], top: buttonLoc[0] }} onClick={() => control()}>CONTROL</button> : <button id="origin" className={"bg-[blue] absolute flex flex-col items-center justify-center w-6/12"} style={{left: buttonLoc[1], top: buttonLoc[0]}} onClick={() => { playing() }}>PLAY</button>)}
-          </>
+          <div id="box3" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-8 col-end-10 row-start-2 row-end-4  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[3], left: leftarrnew[3] })}   >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
 
 
-        </div >
+          <div id="box4" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-12 row-start-2 row-end-4  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[4], left: leftarrnew[4] })}   >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+
+          <div id="box5" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-2 col-end-4 row-start-7 row-end-9 ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[5], left: leftarrnew[5] })}   >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+
+          <div id="box6" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-4 col-end-6 row-start-7 row-end-9  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[6], left: leftarrnew[6] })}   >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+
+          <div id="box7" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-6 col-end-8 row-start-7 row-end-9  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[7], left: leftarrnew[7] })}   >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+
+          <div id="box8" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-8 col-end-10 row-start-7 row-end-9  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[8], left: leftarrnew[8] })}   >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+
+          <div id="box9" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-12 row-start-7 row-end-9  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[9], left: leftarrnew[9] })}   >
+            <Canvas className="canvas">
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Boxy />
+            </Canvas>
+          </div>
+
+          <button id="origin" className={"rounded-[20px] bg-[#FF503C] col-start-5 col-end-7 row-start-5 row-end-6 w-full h-full"} style={{}} onClick={() => control()}>
+            <span className="text-[64px] text-lightback tracking-[-0.04em] body-font font-neue">C</span>
+            <span className="text-[64px] text-lightback tracking-normal body-font font-neue">T</span>
+            <span className="text-[64px] text-lightback tracking-[0.05em] body-font font-neue">R</span>
+            <span className="text-[70px] text-lightback body-font font-gara italic">L</span></button>
+          <button id="origin" className={"rounded-[20px] bg-[#FF503C] text-[64px] col-start-7 col-end-9 row-start-5 row-end-6 w-full h-full"} style={{ left: buttonLoc[1], top: buttonLoc[0] }} onClick={() => { playing() }}>
+            <span className="text-[64px] text-lightback tracking-[-0.095em] body-font font-neue">P</span>
+            <span className="text-[70px] text-lightback tracking-[-0.025em] body-font font-gara italic">L</span>
+            <span className="text-[64px] text-lightback tracking-[-0.085em] body-font font-neue">A</span>
+            <span className="text-[64px] text-lightback body-font font-neue">Y</span>
+          </button>
+        </>
+
+
+      </div >
     </>
 
   );

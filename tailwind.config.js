@@ -6,16 +6,16 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontSize:{
-        'tiny' : '.5rem',
+      fontSize: {
+        'tiny': '.5rem',
       },
       gridTemplateRows: {
         // Simple 8 row grid
         '9': 'repeat(9, minmax(0, 1fr))',
       },
       transitionDuration: {
-        '2000':'2000ms',
-        '5000':'5000ms'
+        '2000': '2000ms',
+        '5000': '5000ms'
       },
       gridRowStart: {
         '8': '8',
@@ -38,10 +38,14 @@ module.exports = {
       colors: {
         'darkback': '#151A1D',
         'lightback': '#F8F3F4'
-      }
+      },
+      fontFamily: {
+        'neue': ['Neue Haas Grotesk Display Pro', 'sans-serif'],
+        'gara': ['Garamond', 'sans-serif']
+      },
     },
   },
   plugins: [],
 
-  
+
 }
