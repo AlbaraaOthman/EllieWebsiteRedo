@@ -15,6 +15,7 @@ import { MousePosition } from '@react-hook/mouse-position';
 import { useMousePosition } from '@hookit/mouse';
 import DrawingArea from '../components/DrawingArea';
 import THREE from 'three';
+import { clear } from 'console';
 
 type frontScreenProp = StackNavigationProp<RootStackParamList, 'Front'>;
 
@@ -28,8 +29,10 @@ function FrontScreen() {
   const [leftarrnew, setleftarrnew] = useState<string[]>([]);
   const [buttonLoc, setbuttonloc] = useState<string[]>([]);
   const [controlFlag, setControlFlag] = useState(true);
-  let topArr: Array<string> = [];
-  let leftArr: Array<string> = [];
+  const [playingFlag, setPlaying] = useState(false);
+  const [ctrlBut, setCtrlBut] = useState(false);
+  const [plyBut, setPlyBut] = useState(false);
+
   let tempArray = [0, 0];
   var movedFlag = 0;
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
@@ -37,6 +40,8 @@ function FrontScreen() {
 
 
   const thisFunc = () => {
+    let topArr: Array<string> = [];
+    let leftArr: Array<string> = [];
     for (var i = 0; i < 10; i++) {
       let myDiv = document.getElementById("box" + i);
       let offsets = myDiv?.getBoundingClientRect();
@@ -48,6 +53,7 @@ function FrontScreen() {
 
       }
     }
+
     setleftarr(leftArr);
     settoparr(topArr);
     settoparrnew(topArr);
@@ -71,66 +77,56 @@ function FrontScreen() {
     setbuttonloc(tempArr);
   }
 
-  const [mousePos, setMousePos] = useState([0]);
-  const [movedFlags, setMovedFlag] = useState(0);
-  var movedFlag = 0;
-
-  const playingPositions = () => {
-    if (!controlFlag) {
-      const handleMouseMove = (event: { clientX: any; clientY: any; }) => {
-        tempArray[0] = event.clientX;
-        tempArray[1] = event.clientY;
-        setMousePos(tempArray);
-        setMovedFlag(1);
-      };
-      window.addEventListener('mousemove', handleMouseMove);
-      return () => {
-        window.removeEventListener(
-          'mousemove',
-          handleMouseMove
-        );
-      };
-    }
-  }
-
   const randomizePositions = () => {
     let newTopArr: Array<string> = [];
     let newLeftArr: Array<string> = [];
-    for (let i = 0; i < 10; i++) {
-      if (controlFlag) {
-        newTopArr[i] = (Math.random() * windowSize.current[1]) + 'px';
-        newLeftArr[i] = (Math.random() * windowSize.current[0]) + 'px';
-      } else {
-        newTopArr[i] = toparrnew[i];
-        newLeftArr[i] = leftarrnew[i];
-      }
-    }
-    settoparrnew(newTopArr);
-    setleftarrnew(newLeftArr);
+    console.log("Control  " + controlFlag);
     if (!controlFlag) {
-      let newTopArr: Array<string> = [];
-      let newLeftArr: Array<string> = [];
       for (let i = 0; i < 10; i++) {
         if (i == 1) {
-          newTopArr[i] = (mousePos[1]) + 'px';
-          newLeftArr[i] = (mousePos[0]) + 'px';
+          newTopArr[i] = (Math.random() * windowSize.current[1]) + 'px';
+          newLeftArr[i] = (Math.random() * windowSize.current[0]) + 'px';
         } else {
-          console.log("Locationd " + toparr[i])
           newTopArr[i] = toparr[i];
           newLeftArr[i] = leftarr[i];
         }
       }
-
-      settoparrnew(newTopArr);
-      setleftarrnew(newLeftArr);
     }
+    settoparrnew(newTopArr);
+    setleftarrnew(newLeftArr);
   };
 
-  let random: NodeJS.Timeout;
+  const controlRandom = () => {
+    let newTopArr: Array<string> = [];
+    let newLeftArr: Array<string> = [];
+    if (controlFlag) {
+      for (let i = 0; i < 10; i++) {
+        newTopArr[i] = (Math.random() * windowSize.current[1]) + 'px';
+        newLeftArr[i] = (Math.random() * windowSize.current[0]) + 'px';
+      }
+    }
+    settoparrnew(newTopArr);
+    setleftarrnew(newLeftArr);
+  }
+
   useEffect(() => {
     thisFunc();
-    let random: NodeJS.Timeout;
-    if (controlFlag) {
+    setFloatingTime(false);
+    setControlFlag(true);
+  }, []);
+
+  let random: NodeJS.Timeout;
+  let controles: NodeJS.Timeout;
+
+  // useEffect(() => {
+  //   random = setInterval(() => {
+  //     randomizePositions();
+  //   }, 5000); // Change 3000 to whatever interval you want in milliseconds
+  //   return () => clearInterval(random);
+  // }, [floatingTime]);
+
+  useEffect(() => {
+    if (!controlFlag) {
       random = setInterval(() => {
         randomizePositions();
       }, 5000); // Change 3000 to whatever interval you want in milliseconds
@@ -139,50 +135,28 @@ function FrontScreen() {
   }, [controlFlag]);
 
   useEffect(() => {
-    thisFunc();
-    let random: NodeJS.Timeout;
-    if (!controlFlag) {
-      random = setInterval(() => {
-        playingPositions();
-        settoparrnew([toparr[0], (tempArray[1]) + "px", toparr[2], toparr[3], toparr[4], toparr[5], toparr[6], toparr[7], toparr[8], toparr[9]]);
-        setleftarrnew([(leftarr[0]), (tempArray[0]) + "px", leftArr[2], leftarr[3], leftarr[4], leftarr[5], leftarr[6], leftarr[7], leftarr[8], leftarr[9]])
-      }, 1000); // Change 3000 to whatever interval you want in milliseconds
+    let controles: NodeJS.Timeout;
+    if (controlFlag) {
+      controles = setInterval(() => {
+        controlRandom();
+      }, 5000); // Change 3000 to whatever interval you want in milliseconds
     }
-    return () => clearInterval(random);
+    return () => clearInterval(controles);
   }, [controlFlag]);
-
-
-
-  useEffect(() => {
-    sleep(5000);
-    thisFunc();
-    // setFloatingTime(false);
-  }, [floatingTime]);
 
   function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-
   const control = async () => {
+    clearInterval(random);
     setControlFlag(true);
-    setFloatingTime(false);
   };
-
-
-
-
 
   const playing = async () => {
+    clearInterval(controles);
     setControlFlag(false);
-    clearInterval(random);
-    setFloatingTime(false);
   };
-
-  useEffect(() => {
-    thisFunc();
-    // setFloatingTime(false); // Turn off floatingTime when component mounts
-  }, []);
 
 
   return (
