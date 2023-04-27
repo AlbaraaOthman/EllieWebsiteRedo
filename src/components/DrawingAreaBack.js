@@ -44,7 +44,6 @@ const DrawingArea = ({onClearLines, clearLines}) => {
         isDrawing.current = false;
     };
 
-    console.log("Blue " + webWidth + " " + webHeight);
     var clientWidth = document.getElementById('Draw').clientWidth;
     var clientHeight = document.getElementById('Draw').clientHeight;
     return (

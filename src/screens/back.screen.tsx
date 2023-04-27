@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -7,6 +7,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Ironh from '../components/Ironh';
 import DrawingArea from '../components/DrawingAreaBack';
+import { Euler } from 'three';
 type backScreenProp = StackNavigationProp<RootStackParamList, 'Back'>;
 
 function BackScreen() {
@@ -18,40 +19,65 @@ function BackScreen() {
   const [mousePos, setMousePos] = useState([0]);
   const [movedFlags, setMovedFlag] = useState(0);
   var movedFlag = 0;
+  const orbitRef = useRef();
 
-  const playingPositions = () => {
+  useEffect(() => {
+    let myDiv = document.getElementById("Obj");
+    let offsets = myDiv?.getBoundingClientRect();
+    if (offsets?.top !== undefined) {
+      setxloc(offsets?.top);
+    }
+    if (offsets?.left !== undefined) {
+      setyloc(offsets?.left);
+
+    }
+  }, []);
+
+
+  // const rotateTo = new Euler(0,0,0);
+  // useEffect(() => {
+  //   let random: NodeJS.Timeout;
+  //     random = setInterval(() => {
+  // playingPositions();
+  //       // const dx = mousePos[0] - xLoc;
+  //       // const dy = mousePos[1] - yLoc;
+  //       // // const angleInRadians = Math.atan2(dy, dx);
+  //       // rotateTo = new Euler( 0, angleInRadians, 0, 'XYZ' );
+  //       console.log("Dinosaur");
+  //       // console.log("XPos " + mousePos[0] + " dino " + mousePos[1]);
+  //     }, 5000); // Change 3000 to whatever interval you want in milliseconds
+  //   return () => clearInterval(random);
+  // }, []);
+  useEffect(() => {
     const handleMouseMove = (event: { clientX: any; clientY: any; }) => {
-      tempArray[0] = event.clientX;
-      tempArray[1] = event.clientY;
-      setMousePos(tempArray);
-      setMovedFlag(1);
+      setMousePos([event.clientX, event.clientY]);
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
-      window.removeEventListener(
-        'mousemove',
-        handleMouseMove
-      );
+      window.removeEventListener('mousemove', handleMouseMove);
     };
-  }
+  }, []);
+
+  // let rotateTo = new Euler(0, 0, 0);
 
 
-  let myDiv = document.getElementById("Obj");
-  let offsets = myDiv?.getBoundingClientRect();
-  if (offsets?.top !== undefined) {
-    setxloc(offsets?.top);
-  }
-  if (offsets?.left !== undefined) {
-    setyloc(offsets?.left);
-
-  }
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     const dx = mousePos[0] - xLoc;
+  //     const dy = mousePos[1] - yLoc;
+  //     const angleInRadians = Math.atan2(dy, dx);
+  //     console.log(`Dinosaur: ` + angleInRadians);
 
 
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };
+  // }, [mousePos]);
 
 
-  const dx = mousePos[0] - xLoc;
-  const dy = mousePos[1] - yLoc;
-  // const angleInRadians = Math.atan2(dy, dx);
+  // rotateTo = new Euler(1.3591205608554973, 1.3591205608554973, 1.3591205608554973, 'XYZ');
+
   return (
     <>
       <div className={"w-screen h-screen grid grid-cols-12 grid-rows-9 gap-5 " + (playing ? "bg-darkback" : "bg-[#F8F3F4]")}>
@@ -63,8 +89,8 @@ function BackScreen() {
             </>
             :
             <>
-              <Canvas id="Obj" className="canvas">
-                <OrbitControls enableZoom={false} /> //allows 3d rotation, also says no zooming!
+              <Canvas id="Obj" className="canvas" >
+                <OrbitControls enableZoom={false}/> //allows 3d rotation, also says no zooming!
                 <ambientLight intensity={0.5} /> //adds light, stops it from being black
                 <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
                 <Ironh />

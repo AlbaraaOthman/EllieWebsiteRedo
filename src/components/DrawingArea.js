@@ -44,7 +44,6 @@ const DrawingArea = ({onClearLines, clearLines}) => {
         isDrawing.current = false;
     };
 
-    console.log("Blue " + webWidth + " " + webHeight);
     return (
         <div className="text-center text-dark absolute">
             <Stage

@@ -154,7 +154,6 @@ function FrontScreen() {
 
 
   useEffect(() => {
-    console.log("Dinosaurs updating " + floatingTime);
     sleep(5000);
     thisFunc();
     setFloatingTime(false);
@@ -185,13 +184,12 @@ function FrontScreen() {
     setFloatingTime(false); // Turn off floatingTime when component mounts
   }, []);
 
-  const a = new THREE.Euler( 0, 1, 1.57, 'XYZ' );
 
   return (
 
     <>
-        <DrawingArea onClearLines={undefined} clearLines={undefined} />
-        <div className={"bg-[#151A1D] place-items-center h-screen w-screen " + (floatingTime ? "grid grid-cols-5 grid-rows-3 gap-3 " : "")} >
+        {/* <DrawingArea onClearLines={undefined} clearLines={undefined} /> */}
+        <div className={"bg-[#151A1D] place-items-center h-screen w-screen " + (floatingTime ? "grid grid-cols-12 grid-rows-9 gap-3 " : "")} >
           <>
             <div id="box0" className={`bg-opacity-0 box ` + (floatingTime ? `col-start-1 row-span-1 w-[300px] h-[300px]` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[0], left: leftarrnew[0] })}   >
               <Canvas className="canvas">
