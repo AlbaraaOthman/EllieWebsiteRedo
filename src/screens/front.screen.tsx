@@ -28,7 +28,7 @@ function FrontScreen() {
   const [toparrnew, settoparrnew] = useState<string[]>([]);
   const [leftarrnew, setleftarrnew] = useState<string[]>([]);
   const [buttonLoc, setbuttonloc] = useState<string[]>([]);
-  const [controlFlag, setControlFlag] = useState(true);
+  const [controlFlag, setControlFlag] = useState(false);
   const [playingFlag, setPlaying] = useState(false);
   const [ctrlBut, setCtrlBut] = useState(false);
   const [plyBut, setPlyBut] = useState(false);
@@ -77,11 +77,10 @@ function FrontScreen() {
     setbuttonloc(tempArr);
   }
 
-  const randomizePositions = () => {
+  const controlRandom = () => {
     let newTopArr: Array<string> = [];
     let newLeftArr: Array<string> = [];
-    console.log("Control  " + controlFlag);
-    if (!controlFlag) {
+    if (controlFlag) {
       for (let i = 0; i < 10; i++) {
         if (i == 1) {
           newTopArr[i] = (Math.random() * windowSize.current[1]) + 'px';
@@ -96,10 +95,10 @@ function FrontScreen() {
     setleftarrnew(newLeftArr);
   };
 
-  const controlRandom = () => {
+  const randomizePositions = () => {
     let newTopArr: Array<string> = [];
     let newLeftArr: Array<string> = [];
-    if (controlFlag) {
+    if (!controlFlag) {
       for (let i = 0; i < 10; i++) {
         newTopArr[i] = (Math.random() * windowSize.current[1]) + 'px';
         newLeftArr[i] = (Math.random() * windowSize.current[0]) + 'px';
@@ -117,13 +116,6 @@ function FrontScreen() {
 
   let random: NodeJS.Timeout;
   let controles: NodeJS.Timeout;
-
-  // useEffect(() => {
-  //   random = setInterval(() => {
-  //     randomizePositions();
-  //   }, 5000); // Change 3000 to whatever interval you want in milliseconds
-  //   return () => clearInterval(random);
-  // }, [floatingTime]);
 
   useEffect(() => {
     if (!controlFlag) {
