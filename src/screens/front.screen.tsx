@@ -30,9 +30,10 @@ function FrontScreen() {
   const [buttonLoc, setbuttonloc] = useState<string[]>([]);
   const [controlFlag, setControlFlag] = useState(false);
   const [playingFlag, setPlaying] = useState(false);
-  const [ctrlBut, setCtrlBut] = useState(false);
-  const [plyBut, setPlyBut] = useState(false);
-
+  const [owid, setowidth] = useState("");
+  const [ohig, sethwidth] = useState("");
+  const [ow, seto] = useState(0);
+  const [oh, seth] = useState(0);
   let tempArray = [0, 0];
   var movedFlag = 0;
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
@@ -75,16 +76,38 @@ function FrontScreen() {
       tempArr[3] = offsets?.height + "px";
     }
     setbuttonloc(tempArr);
+
+    let mySqu = document.getElementById("box0");
+    let offsetss = mySqu?.getBoundingClientRect();
+    if (offsetss?.width !== undefined) {
+      setowidth(offsetss?.width + "px");
+      seto(offsetss?.width)
+    }
+    if (offsetss?.height !== undefined) {
+      sethwidth(offsetss?.height + "px");
+      seth(offsetss?.height);
+    }
   }
+
+
 
   const controlRandom = () => {
     let newTopArr: Array<string> = [];
     let newLeftArr: Array<string> = [];
+    var temp =0;
     if (controlFlag) {
       for (let i = 0; i < 10; i++) {
         if (i == 1) {
-          newTopArr[i] = (Math.random() * windowSize.current[1]) + 'px';
-          newLeftArr[i] = (Math.random() * windowSize.current[0]) + 'px';
+          temp = (Math.random() * windowSize.current[1]);
+          while((temp + oh)> windowSize.current[1]){
+            temp = (Math.random() * windowSize.current[1]);
+          }
+          newTopArr[i] = temp + 'px'; 
+          temp = (Math.random() * windowSize.current[0]);
+          while((temp + ow)> windowSize.current[0]){
+            temp = (Math.random() * windowSize.current[1]);
+          }
+          newLeftArr[i] = temp + 'px';
         } else {
           newTopArr[i] = toparr[i];
           newLeftArr[i] = leftarr[i];
@@ -98,10 +121,19 @@ function FrontScreen() {
   const randomizePositions = () => {
     let newTopArr: Array<string> = [];
     let newLeftArr: Array<string> = [];
+    var temp = 0;
     if (!controlFlag) {
       for (let i = 0; i < 10; i++) {
-        newTopArr[i] = (Math.random() * windowSize.current[1]) + 'px';
-        newLeftArr[i] = (Math.random() * windowSize.current[0]) + 'px';
+        temp = (Math.random() * windowSize.current[1]);
+        while((temp + oh)> windowSize.current[1]){
+          temp = (Math.random() * windowSize.current[1]);
+        }
+        newTopArr[i] = temp + 'px'; 
+        temp = (Math.random() * windowSize.current[0]);
+        while((temp + ow)> windowSize.current[1]){
+          temp = (Math.random() * windowSize.current[1]);
+        }
+        newLeftArr[i] = temp + 'px';
       }
     }
     settoparrnew(newTopArr);
@@ -157,7 +189,7 @@ function FrontScreen() {
       {/* <DrawingArea onClearLines={undefined} clearLines={undefined} /> */}
       <div className={"bg-[#151A1D] place-items-center h-screen w-screen grid grid-cols-12 grid-rows-9 gap-3 " + (floatingTime ? "absolute " : "")} >
         <>
-          <div id="box0" className={`bg-lightback box ` + (floatingTime ? `col-start-2 col-end-4 row-start-2 row-end-4 ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[0], left: leftarrnew[0] })}   >
+          <div id="box0" className={`box ` + (floatingTime ? `col-start-2 col-end-4 row-start-2 row-end-4 ` : `  absolute w-[${owid}] h-[${ohig}] ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[0], left: leftarrnew[0] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -166,7 +198,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          <div id="box1" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-4 col-end-6 row-start-2 row-end-4  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[1], left: leftarrnew[1] })}   >
+          <div id="box1" className={`box ` + (floatingTime ? `col-start-4 col-end-6 row-start-2 row-end-4 ` : `  absolute w-[${owid}] h-[${ohig}] ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[1], left: leftarrnew[1] })}   >
             <Canvas className="canvas" onClick={() => navigation.navigate('Back')}>
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -175,7 +207,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          <div id="box2" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-6 col-end-8 row-start-2 row-end-4  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[2], left: leftarrnew[2] })}   >
+          <div id="box2" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-6 col-end-8 row-start-2 row-end-4  ` : `  absolute w-[${owid}] h-[${ohig}] ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[2], left: leftarrnew[2] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -184,7 +216,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          <div id="box3" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-8 col-end-10 row-start-2 row-end-4  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[3], left: leftarrnew[3] })}   >
+          <div id="box3" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-8 col-end-10 row-start-2 row-end-4  ` : `  absolute w-[${owid}] h-[${ohig}]    ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[3], left: leftarrnew[3] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -194,7 +226,7 @@ function FrontScreen() {
           </div>
 
 
-          <div id="box4" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-12 row-start-2 row-end-4  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[4], left: leftarrnew[4] })}   >
+          <div id="box4" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-12 row-start-2 row-end-4  ` : `  absolute w-[${owid}] h-[${ohig}]   ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[4], left: leftarrnew[4] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -203,7 +235,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          <div id="box5" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-2 col-end-4 row-start-7 row-end-9 ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[5], left: leftarrnew[5] })}   >
+          <div id="box5" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-2 col-end-4 row-start-7 row-end-9 ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[5], left: leftarrnew[5] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -212,7 +244,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          <div id="box6" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-4 col-end-6 row-start-7 row-end-9  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[6], left: leftarrnew[6] })}   >
+          <div id="box6" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-4 col-end-6 row-start-7 row-end-9  ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[6], left: leftarrnew[6] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -221,7 +253,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          <div id="box7" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-6 col-end-8 row-start-7 row-end-9  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[7], left: leftarrnew[7] })}   >
+          <div id="box7" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-6 col-end-8 row-start-7 row-end-9  ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[7], left: leftarrnew[7] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -230,7 +262,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          <div id="box8" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-8 col-end-10 row-start-7 row-end-9  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[8], left: leftarrnew[8] })}   >
+          <div id="box8" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-8 col-end-10 row-start-7 row-end-9  ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[8], left: leftarrnew[8] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
@@ -239,7 +271,7 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          <div id="box9" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-12 row-start-7 row-end-9  ` : `  absolute p-5 ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[9], left: leftarrnew[9] })}   >
+          <div id="box9" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-12 row-start-7 row-end-9  ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-2000`))} style={(floatingTime ? {} : { top: toparrnew[9], left: leftarrnew[9] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
