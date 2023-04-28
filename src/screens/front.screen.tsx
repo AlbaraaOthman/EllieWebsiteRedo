@@ -16,7 +16,16 @@ import { useMousePosition } from '@hookit/mouse';
 import DrawingArea from '../components/DrawingArea';
 import THREE from 'three';
 import { clear } from 'console';
-
+import Legod from '../components/Legod';
+import Asana from '../components/Asana';
+import Comma from '../components/Commad';
+import Inter from '../components/Interviewd';
+import Logod from '../components/Logo';
+import GWRD from '../components/Gwrd';
+import Gest from '../components/Gestare';
+import GFS from '../components/Gfd';
+import GFPost from '../components/Smithpost';
+import Boardy from '../components/Bd';
 type frontScreenProp = StackNavigationProp<RootStackParamList, 'Front'>;
 
 function FrontScreen() {
@@ -97,7 +106,7 @@ function FrontScreen() {
     var temp = 0;
     if (controlFlag) {
       for (let i = 0; i < 10; i++) {
-        if (i == 1) {
+        if (i == 7) {
           temp = (Math.random() * windowSize.current[1]);
           newTopArr[i] = temp + 'px';
           temp = (Math.random() * windowSize.current[0]);
@@ -203,7 +212,7 @@ function FrontScreen() {
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Boxy />
+              <Logod />
             </Canvas>
           </div>
 
@@ -212,16 +221,16 @@ function FrontScreen() {
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Ironh />
+              <Inter />
             </Canvas>
           </div>
 
           <div id="box2" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-6 col-end-8 row-start-2 row-end-4  ` : `  absolute w-[${owid}] h-[${ohig}] ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[2], left: leftarrnew[2] })}   >
             <Canvas className="canvas">
-              <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
+              <OrbitControls enableZoom={false} autoRotate/> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
-              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Boxy />
+              <directionalLight position={[-10, 25, 10]} intensity={1} /> // //adds light to give it 3D Effect
+              <Legod />
             </Canvas>
           </div>
 
@@ -230,7 +239,7 @@ function FrontScreen() {
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Boxy />
+              <GWRD />
             </Canvas>
           </div>
 
@@ -240,7 +249,7 @@ function FrontScreen() {
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Boxy />
+              <Comma />
             </Canvas>
           </div>
 
@@ -249,7 +258,7 @@ function FrontScreen() {
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Boxy />
+              <Gest />
             </Canvas>
           </div>
 
@@ -258,7 +267,7 @@ function FrontScreen() {
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Boxy />
+              <GFS />
             </Canvas>
           </div>
 
@@ -267,7 +276,7 @@ function FrontScreen() {
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Boxy />
+              <Asana />
             </Canvas>
           </div>
 
@@ -276,7 +285,7 @@ function FrontScreen() {
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Boxy />
+              <GFPost />
             </Canvas>
           </div>
 
@@ -285,7 +294,7 @@ function FrontScreen() {
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-              <Boxy />
+              <Boardy />
             </Canvas>
           </div>
 
