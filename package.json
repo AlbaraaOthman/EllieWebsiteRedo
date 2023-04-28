@@ -22,6 +22,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/react-native": "^0.71.5",
     "cocoapods": "^0.0.0",
+    "gltf-pipeline": "^4.1.0",
     "gsap": "^3.11.5",
     "konva": "^9.0.1",
     "mouse-follower": "^1.1.2",

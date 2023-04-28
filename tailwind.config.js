@@ -17,7 +17,9 @@ module.exports = {
         '2000': '2000ms',
         '5000': '5000ms',
         '4000': '4000ms',
-        '3500': '3500ms'
+        '3500': '3500ms',
+        '10000': '10000ms',
+        '9000': '9000ms'
       },
       gridRowStart: {
         '8': '8',
@@ -42,8 +44,8 @@ module.exports = {
         'lightback': '#F8F3F4'
       },
       fontFamily: {
-        'neue': ['Neue Haas Grotesk Display Pro', 'sans-serif'],
-        'gara': ['Garamond', 'sans-serif']
+        'neue': ['Neue Haas Grotesk Display Pro 55 Roman', 'sans-serif'],
+        'gara': ['Garamond ', 'serif']
       },
     },
   },
