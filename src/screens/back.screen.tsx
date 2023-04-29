@@ -9,7 +9,6 @@ import Ironh from '../components/Ironh';
 import DrawingArea from '../components/DrawingAreaBack';
 import { Euler } from 'three';
 type backScreenProp = StackNavigationProp<RootStackParamList, 'Back'>;
-
 function BackScreen() {
   const navigation = useNavigation<backScreenProp>();
   const [playing, setPlaying] = useState(false);

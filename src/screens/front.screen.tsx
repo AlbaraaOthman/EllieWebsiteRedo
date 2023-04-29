@@ -208,7 +208,7 @@ function FrontScreen() {
       <div className={"bg-[#151A1D] place-items-center h-screen w-screen grid grid-cols-12 grid-rows-9 gap-5 transition motion-reduce " + (floatingTime ? "absolute " : "")} >
         <>
           <div id="box0" className={` ` + (floatingTime ? `col-start-2 col-end-4 row-start-2 row-end-4 ` : `  absolute w-[${owid}] h-[${ohig}] ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[0], left: leftarrnew[0] })}   >
-            <Canvas className="canvas">
+            <Canvas className="canvas" onClick={() => navigation.navigate('Logo')}>
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
@@ -217,7 +217,7 @@ function FrontScreen() {
           </div>
 
           <div id="box1" className={`box ` + (floatingTime ? `col-start-4 col-end-6 row-start-2 row-end-4 ` : `  absolute w-[${owid}] h-[${ohig}] ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[1], left: leftarrnew[1] })}   >
-            <Canvas className="canvas" onClick={() => navigation.navigate('Back')}>
+            <Canvas className="canvas" onClick={() => navigation.navigate('Inter')}>
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
@@ -226,8 +226,8 @@ function FrontScreen() {
           </div>
 
           <div id="box2" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-6 col-end-8 row-start-2 row-end-4  ` : `  absolute w-[${owid}] h-[${ohig}] ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[2], left: leftarrnew[2] })}   >
-            <Canvas className="canvas">
-              <OrbitControls enableZoom={false} autoRotate/> //allows 3d rotation, also says no zooming!
+            <Canvas className="canvas" onClick={() => navigation.navigate('Legod')}>
+              <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-10, 25, 10]} intensity={1} /> // //adds light to give it 3D Effect
               <Legod />
@@ -236,7 +236,7 @@ function FrontScreen() {
 
           <div id="box3" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-8 col-end-10 row-start-2 row-end-4  ` : `  absolute w-[${owid}] h-[${ohig}]    ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[3], left: leftarrnew[3] })}   >
             <Canvas className="canvas">
-              <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
+              <OrbitControls enableZoom={false} autoRotate onClick={() => navigation.navigate('GWRD')} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
               <GWRD />
@@ -245,7 +245,7 @@ function FrontScreen() {
 
 
           <div id="box4" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-12 row-start-2 row-end-4  ` : `  absolute w-[${owid}] h-[${ohig}]   ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[4], left: leftarrnew[4] })}   >
-            <Canvas className="canvas">
+            <Canvas className="canvas" onClick={() => navigation.navigate('Comma')}>
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
@@ -253,17 +253,17 @@ function FrontScreen() {
             </Canvas>
           </div>
 
-          <div id="box5" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-2 col-end-4 row-start-7 row-end-9 ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[5], left: leftarrnew[5] })}   >
+          {/* <div id="box5" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-2 col-end-4 row-start-7 row-end-9 ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[5], left: leftarrnew[5] })}   >
             <Canvas className="canvas">
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
               <Gest />
             </Canvas>
-          </div>
+          </div> */}
 
           <div id="box6" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-4 col-end-6 row-start-7 row-end-9  ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[6], left: leftarrnew[6] })}   >
-            <Canvas className="canvas">
+            <Canvas className="canvas" onClick={() => navigation.navigate('GFS')}>
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
@@ -272,7 +272,7 @@ function FrontScreen() {
           </div>
 
           <div id="box7" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-6 col-end-8 row-start-7 row-end-9  ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[7], left: leftarrnew[7] })}   >
-            <Canvas className="canvas">
+            <Canvas className="canvas" onClick={() => navigation.navigate('Asana')}>
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
@@ -281,7 +281,7 @@ function FrontScreen() {
           </div>
 
           <div id="box8" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-8 col-end-10 row-start-7 row-end-9  ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[8], left: leftarrnew[8] })}   >
-            <Canvas className="canvas">
+            <Canvas className="canvas" onClick={() => navigation.navigate('GFPost')}>
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
@@ -290,7 +290,7 @@ function FrontScreen() {
           </div>
 
           <div id="box9" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-12 row-start-7 row-end-9  ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[9], left: leftarrnew[9] })}   >
-            <Canvas className="canvas">
+            <Canvas className="canvas" onClick={() => navigation.navigate('Boardy')} >
               <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
