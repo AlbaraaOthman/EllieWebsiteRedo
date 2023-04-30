@@ -45,7 +45,7 @@ const DrawingArea = ({onClearLines, clearLines}) => {
     };
 
     return (
-        <div className="text-center text-dark absolute">
+        <div className="text-center text-dark absolute z-0">
             <Stage
                 width={webWidth}
                 height={webHeight}
