@@ -155,16 +155,16 @@ function BoardyScreen() {
             </Collapsible>
             <Collapsible className="z-10" id="5" trigger="&nbsp;  5. Ask for feedback." open={open === "5"} onOpening={() => setNumber(5)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
-                <p>Q1: How did it feel to part of &amp;.LAB the brand, and &amp;.LAB the team?&nbsp;<br/><br/>A1: very slay since we are such a great group. The lab coats helped a lot as well. The quality of the agency was definitely maintained during the semester, last year my creative directors really fell off and did not care very much.&nbsp;<br/><br/>A2: &amp;.LAB has been my favourite agency experience ever. I&apos;ve been questioning whether graphic design is a route I want to go down, but after being in a subversive and fun agency I feel a lot of my passion is back. I loved the ironic and light-hearted approach to the play activities and pitch decks as it took alot of the pressure off that I normally feel. I feel like I really learnt and grew as a designer and I had alot of fun. I feel like this is how an agency should be.<br/><br/>Q2: If you had to repeat Semester 1, would you still want to join &amp;.LAB? Why or why not?<br/><br/>A1: Yesssss- because I really enjoyed listening to you the creative directors the way you think and approached things, and I feel like I learnt so much just being around you.&nbsp;<br/><br/>A2: Yes i&rsquo;d still want to join &amp;Lab, I love how each member of the team are equal, as in having the opportunity to share ideas and speak up.&nbsp;<br/><br/>A3: I still want to join. &amp;LAB was my favorite in semester one. I always want to go back to &amp;lab. I was happy and relaxed in &amp;lab. And this was my first time that the creative director can remember my name.</p>
+                <p>Q1: How did it feel to part of &amp;.LAB the brand, and &amp;.LAB the team?&nbsp;<br /><br />A1: very slay since we are such a great group. The lab coats helped a lot as well. The quality of the agency was definitely maintained during the semester, last year my creative directors really fell off and did not care very much.&nbsp;<br /><br />A2: &amp;.LAB has been my favourite agency experience ever. I&apos;ve been questioning whether graphic design is a route I want to go down, but after being in a subversive and fun agency I feel a lot of my passion is back. I loved the ironic and light-hearted approach to the play activities and pitch decks as it took alot of the pressure off that I normally feel. I feel like I really learnt and grew as a designer and I had alot of fun. I feel like this is how an agency should be.<br /><br />Q2: If you had to repeat Semester 1, would you still want to join &amp;.LAB? Why or why not?<br /><br />A1: Yesssss- because I really enjoyed listening to you the creative directors the way you think and approached things, and I feel like I learnt so much just being around you.&nbsp;<br /><br />A2: Yes i&rsquo;d still want to join &amp;Lab, I love how each member of the team are equal, as in having the opportunity to share ideas and speak up.&nbsp;<br /><br />A3: I still want to join. &amp;LAB was my favorite in semester one. I always want to go back to &amp;lab. I was happy and relaxed in &amp;lab. And this was my first time that the creative director can remember my name.</p>
 
-                  <div className='h-[20px]'></div>
-                </div>
-                </Collapsible>
-                </>
-                </div>
-                </div >
-                </>
-                  );
+                <div className='h-[20px]'></div>
+              </div>
+            </Collapsible>
+          </>
+        </div>
+      </div >
+    </>
+  );
 }
 
-                  export default BoardyScreen;
+export default BoardyScreen;

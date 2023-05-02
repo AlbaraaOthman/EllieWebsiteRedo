@@ -235,8 +235,8 @@ function FrontScreen() {
           </div>
 
           <div id="box3" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-13 row-start-1 row-end-4  ` : `  absolute w-[${owid}] h-[${ohig}]    ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[3], left: leftarrnew[3] })}   >
-            <Canvas className="canvas">
-              <OrbitControls enableZoom={false} autoRotate onClick={() => navigation.navigate('GWRD')} /> //allows 3d rotation, also says no zooming!
+            <Canvas className="canvas" onClick={() => navigation.navigate('GWRD')} >
+              <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
               <GWRD />

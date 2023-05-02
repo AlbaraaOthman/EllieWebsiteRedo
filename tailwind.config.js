@@ -42,6 +42,7 @@ module.exports = {
       colors: {
         'darkback': '#151A1D',
         'lightback': '#F8F3F4',
+        'redish': '#FF503C',
         'head': '#868688'
 
       },

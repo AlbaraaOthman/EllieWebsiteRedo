@@ -124,12 +124,12 @@ function LegodScreen() {
           <>
             <span className="opacity-50 text-head font-neues text-sm/[20px]">How to Model a Play Activity</span>
             <div className='h-[20px]'></div>
-            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Pitch the idea." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]' >
+            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Pitch the idea." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]' >
               <p className='ml-4'>A low-pressure activity to start, increasing comfort among the team and enhancing creativity, motivating the team to enjoy sessions and increase productivity. This approach was inspired by my work at LEGO, where we&rsquo;re actively encouraged to play on the job in order to achieve our best work. I also felt really motivated by our training videos, highlighting through strong brand values that prioritising imagination and play is integral to maintaining an open-mind and approaching situations laterally. <br />
                 <br />Role: Organise the activities session to session.<br /> </p>
               <div className='h-[20px]'></div>
             </Collapsible>
-            <Collapsible className="z-10" id="2" trigger="&nbsp; 2. Notice areas for development." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="2" trigger="&nbsp; 2. Notice areas for development." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>
                   Everyone came across very nervous, communication was poor among the team.
@@ -141,7 +141,7 @@ function LegodScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="3" trigger="&nbsp;  3. Consult HR Manager." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="3" trigger="&nbsp;  3. Consult HR Manager." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>We video-called Sam’s HR Manager from SNYK for advice on improving communication.</p>
                 <br />
@@ -155,7 +155,7 @@ function LegodScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="4" trigger="&nbsp;  4. Make play an opprtunity." open={open === "4"} onOpening={() => setNumber(4)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="4" trigger="&nbsp;  4. Make play an opprtunity." open={open === "4"} onOpening={() => setNumber(4)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>I tailored play specifically to the problems we were having around communication by curating communication-based activities to motivate the team to talk to each other.</p>
                 <br />
@@ -167,7 +167,7 @@ function LegodScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="5" trigger="&nbsp;  5. Play to design." open={open === "5"} onOpening={() => setNumber(5)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="5" trigger="&nbsp;  5. Play to design." open={open === "5"} onOpening={() => setNumber(5)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>&.LIBS, based on Mad Libs, was designed to motivate Seniors to be adaptable and develop concepts quickly and creatively by unknowingly writing ridiculous briefs for themselves. Having Seniors pitch their solutions to the team allowed us to assess their presentation skills ahead of the G. F. Smith pitch and build their confidence.</p>
                 <br />
@@ -178,7 +178,7 @@ function LegodScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="6" trigger="&nbsp;  6. Ask for feedback." open={open === "6"} onOpening={() => setNumber(6)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="6" trigger="&nbsp;  6. Ask for feedback." open={open === "6"} onOpening={() => setNumber(6)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>
                   Matthew and I put together a survey to evidence the motivational effects of the play activities throughout Semester 1 and 2. I was always conscious of making our team sessions worthwhile and I personally needed the validation that everyone was enjoying our sessions and felt they were actively achieving in being part of &.LAB. I made a habit of asking the team at the end of play activities if they had enjoyed them, and if they felt they were worthwhile, and while verbal feedback sufficed in the moment, I felt I needed more solid reassurance that I was doing right by my team.
@@ -212,7 +212,7 @@ function LegodScreen() {
               </div>
               <div className='h-[20px]'></div>
             </Collapsible>
-            <Collapsible className="z-10" id="7" trigger="&nbsp;  7. Reflect." open={open === "7"} onOpening={() => setNumber(7)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="7" trigger="&nbsp;  7. Reflect." open={open === "7"} onOpening={() => setNumber(7)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
              <div className='ml-4'>
               <p>
                 The play activities were the times that I felt the most proud of my contribution to the agency, I could feel everyone enjoying themselves.
