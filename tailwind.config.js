@@ -41,10 +41,13 @@ module.exports = {
       },
       colors: {
         'darkback': '#151A1D',
-        'lightback': '#F8F3F4'
+        'lightback': '#F8F3F4',
+        'head': '#868688'
+
       },
       fontFamily: {
-        'neue': ['Neue Haas Grotesk Display Pro 55 Roman', 'sans-serif'],
+        'neue': ["Neue Haas Grotesk Display Pro", 'sans-serif'],
+        'neues': ["NHaasGroteskDSPro-65Md", 'sans-serif'],
         'gara': ['Garamond ', 'serif']
       },
     },
