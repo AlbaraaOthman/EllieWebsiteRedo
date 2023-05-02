@@ -10,14 +10,14 @@ export default function Model(props) {
   const { nodes, materials } = useGLTF('/EllieWebsiteRedo/smithpost.gltf')
   return (
     <group {...props} dispose={null}>
-      <group position={[-0.07, -0.06, -0.06]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.1}>
+      <group position={[-0.07, 0, -0.06]} rotation={[-Math.PI / 2, 0, 0]}>
+        <group scale={1}>
           <group position={[0, 0.85, 1.2]} rotation={[-Math.PI, 0, 0]}>
-            <mesh geometry={nodes.Body1.geometry} material={materials.Concrete_Brushed_01} scale={200} />
+            <mesh geometry={nodes.Body1.geometry} material={materials.Concrete_Brushed_01} scale={100} />
           </group>
         </group>
       </group>
-      <PerspectiveCamera makeDefault={false} far={2} near={0} fov={34.52} position={[0.09, 0.27, 0.2]} rotation={[-0.85, 0.25, 0.28]} />
+      <PerspectiveCamera makeDefault={false} far={2} near={0} fov={34.52} position={[0.5, 0.36, 0.5]} rotation={[-0.36, 0.75, 0.25]} />
     </group>
   )
 }

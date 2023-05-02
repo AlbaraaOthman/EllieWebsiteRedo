@@ -10,24 +10,26 @@ export default function Model(props) {
   const { nodes, materials } = useGLTF('/EllieWebsiteRedo/bd.gltf')
   return (
     <group {...props} dispose={null}>
-      <group position={[-0.24, -0.02, -0.16]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-        <group scale={0.1}>
-          <group position={[-2.54, -0.16, -3.36]}>
-            <mesh geometry={nodes.Body1.geometry} material={materials.Matte} scale={400} />
+      <group position={[0.01, 0, 0]}>
+        <group position={[-0.01, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.25, 0.25, 0.19]}>
+          <group scale={1}>
+            <mesh geometry={nodes.Body1_3.geometry} material={materials['Matte 3']} scale={10} />
+            <mesh geometry={nodes.Body1_4.geometry} material={materials['Brushed Aluminum']} scale={100} />
           </group>
-          <group position={[-2.54, -0.16, -3.36]}>
-            <mesh geometry={nodes.Body1_2.geometry} material={materials['Glass 2']} scale={400} />
-            <mesh geometry={nodes.Body2.geometry} material={materials['Glass 2']} scale={400} />
+        </group>
+        <group position={[-0.24, -0.02, -0.16]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+          <group scale={1}>
+            <group position={[-2.54, -0.16, -3.36]}>
+              <mesh geometry={nodes.Body1.geometry} material={materials.Matte} scale={100} />
+            </group>
+            <group position={[-2.54, -0.16, -3.36]}>
+              <mesh geometry={nodes.Body1_2.geometry} material={materials['Glass 2']} position={[-0.63, -1.19, 0]} rotation={[0, 0, 0.65]} scale={[8.59, 7.78, 10]} />
+              <mesh geometry={nodes.Body2.geometry} material={materials['Glass 2']} position={[1.11, -0.31, 0]} rotation={[0, 0, -0.44]} scale={[7.3, 7.48, 10]} />
+            </group>
           </group>
         </group>
       </group>
-      <group position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.25, 0.25, 0.19]}>
-        <group scale={0.1}>
-          <mesh geometry={nodes.Body1_3.geometry} material={materials['Matte 3']} scale={400} />
-          <mesh geometry={nodes.Body1_4.geometry} material={materials['Brushed Aluminum']} scale={400} />
-        </group>
-      </group>
-      <PerspectiveCamera makeDefault={false} far={2} near={0} fov={34.52} position={[0.5, 0.3, 0.5]} rotation={[-0.36, 0.75, 0.25]} />
+      <PerspectiveCamera makeDefault={false} far={2} near={0} fov={34.52} position={[0.51, 0.3, 0.5]} rotation={[-0.36, 0.75, 0.25]} />
     </group>
   )
 }

@@ -11,15 +11,14 @@ export default function Model(props) {
   return (
     <group {...props} dispose={null}>
       <group position={[-0.07, 0.01, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.1}>
+        <group scale={1}>
           <group position={[0, 0.85, 1.2]} rotation={[-Math.PI, 0, 0]}>
-            <mesh geometry={nodes.Body1.geometry} material={materials['Concrete_Brushed_01 2']} scale={200} />
-            <mesh geometry={nodes.Body14.geometry} material={materials['Concrete_Brushed_01 2']} scale={200} />
+            <mesh geometry={nodes.Body1.geometry} material={materials['Concrete_Brushed_01 2']} scale={100} />
+            <mesh geometry={nodes.Body14.geometry} material={materials['Concrete_Brushed_01 2']} scale={100} />
           </group>
-          <mesh geometry={nodes.Body1_2.geometry} material={materials['Glossy Paper']} scale={200} />
         </group>
       </group>
-      <PerspectiveCamera makeDefault={false} far={2} near={0} fov={34.52} position={[0.43, 0.3, 0.57]} rotation={[-0.36, 0.75, 0.25]} />
+      <PerspectiveCamera makeDefault={false} far={2} near={0} fov={34.52} position={[0.5, 0.33, 0.5]} rotation={[-0.36, 0.75, 0.25]} />
     </group>
   )
 }

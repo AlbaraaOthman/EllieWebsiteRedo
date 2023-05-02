@@ -10,13 +10,15 @@ export default function Model(props) {
   const { nodes, materials } = useGLTF('/EllieWebsiteRedo/logo.gltf')
   return (
     <group {...props} dispose={null}>
-      <group position={[-3.445, -0.265, 0.655]} rotation={[0, 0, 0.01]} scale={[45.485, 45.485, 83.765]}>
-        <mesh geometry={nodes.svgMesh1.geometry} material={materials.Gelatin} position={[0.005, 0, -0.005]} scale={[0.45, 0.45, 0.18]} />
+      <group position={[0, 3, 0]}>
+        <group position={[2, -2.84, 1.04]} rotation={[0, 0, 0.09]} scale={[49.4, 49.4, 90.97]}>
+          <mesh geometry={nodes.svgMesh1_2.geometry} material={materials.Plastic} position={[-0.01, -0.01, -0.01]} scale={[1.12, 1.12, 0.56]} />
+        </group>
+        <group position={[-6.89, -3.53, 1.31]} rotation={[0, 0, 0.02]} scale={[90.97, 90.97, 167.53]}>
+          <mesh geometry={nodes.svgMesh1.geometry} material={materials.Plastic} position={[0.01, 0, -0.01]} scale={[0.9, 0.9, 0.36]} />
+        </group>
       </group>
-      <group position={[1, 0.08, 0.52]} rotation={[0, 0, 0.045]} scale={[24.7, 24.7, 45.485]}>
-        <mesh geometry={nodes.svgMesh1_2.geometry} material={materials.Gelatin} position={[-0.005, -0.005, -0.005]} scale={[0.56, 0.56, 0.28]} />
-      </group>
-      <PerspectiveCamera makeDefault={false} far={8.215} near={0} fov={34.52} position={[0.25, 1.75, 0.25]} rotation={[-0.36, 0.75, 0.25]} />
+      <PerspectiveCamera makeDefault={false} far={16.43} near={0} fov={34.52} position={[0.5, 3.3, 0.5]} rotation={[-0.36, 0.75, 0.25]} />
     </group>
   )
 }
