@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/EllieWebsiteRedo/static/css/main.c3c4af5f.css",
-    "main.js": "/EllieWebsiteRedo/static/js/main.3ff96835.js",
+    "main.js": "/EllieWebsiteRedo/static/js/main.9a08e1ff.js",
     "static/js/787.56076306.chunk.js": "/EllieWebsiteRedo/static/js/787.56076306.chunk.js",
     "index.html": "/EllieWebsiteRedo/index.html",
     "main.c3c4af5f.css.map": "/EllieWebsiteRedo/static/css/main.c3c4af5f.css.map",
-    "main.3ff96835.js.map": "/EllieWebsiteRedo/static/js/main.3ff96835.js.map",
+    "main.9a08e1ff.js.map": "/EllieWebsiteRedo/static/js/main.9a08e1ff.js.map",
     "787.56076306.chunk.js.map": "/EllieWebsiteRedo/static/js/787.56076306.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c3c4af5f.css",
-    "static/js/main.3ff96835.js"
+    "static/js/main.9a08e1ff.js"
   ]
 }
