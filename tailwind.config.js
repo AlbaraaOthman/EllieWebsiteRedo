@@ -55,7 +55,8 @@ module.exports = {
         'light': '#F8F3F4'
       },
       cursor: {
-        'dot': 'url(dot.png), pointer',
+        'dot': 'url(dotred.png), pointer',
+        'dotw': 'url(dotwhite.png), pointer',
       }
     },
   },

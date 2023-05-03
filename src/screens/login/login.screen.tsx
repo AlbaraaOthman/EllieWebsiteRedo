@@ -28,7 +28,7 @@ function LoginScreen() {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <svg onClick={validateEntry} className="col-start-6 col-end-8 row-start-7 row-end-7"width="158" height="66" viewBox="0 0 158 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg onClick={validateEntry} className="hover:cursor-dotw col-start-6 col-end-8 row-start-7 row-end-7"width="158" height="66" viewBox="0 0 158 66" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 20.5332C0 9.48752 8.95431 0.533203 20 0.533203H138C149.046 0.533203 158 9.48751 158 20.5332V45.6548C158 56.7005 149.046 65.6548 138 65.6548H20C8.9543 65.6548 0 56.7005 0 45.6548V20.5332Z" fill="#FF503C" />
           <path d="M0 20C0 8.9543 8.95431 0 20 0H138C149.046 0 158 8.9543 158 20V45.6554C158 56.7011 149.046 65.6554 138 65.6554H20C8.9543 65.6554 0 56.7011 0 45.6554V20Z" fill="#FF503C" />
           <path d="M41 41.3271H54.337V39.2376H43.3217V32.9188H53.0472V31.0055H43.3217V25.316H54.0274V23.3271H41V41.3271Z" fill="#F8F3F4" />
