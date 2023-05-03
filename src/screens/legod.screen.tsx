@@ -129,7 +129,7 @@ function LegodScreen() {
                 <br />Role: Organise the activities session to session.<br /> </p>
               <div className='h-[20px]'></div>
             </Collapsible>
-            <Collapsible className="z-10" id="2" trigger="&nbsp; 2. Notice areas for development." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="2" transitionTime={500} trigger="&nbsp; 2. Notice areas for development." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>
                   Everyone came across very nervous, communication was poor among the team.
@@ -141,7 +141,7 @@ function LegodScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="3" trigger="&nbsp;  3. Consult HR Manager." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="3" transitionTime={500} trigger="&nbsp;  3. Consult HR Manager." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>We video-called Sam’s HR Manager from SNYK for advice on improving communication.</p>
                 <br />
@@ -155,7 +155,7 @@ function LegodScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="4" trigger="&nbsp;  4. Make play an opportunity." open={open === "4"} onOpening={() => setNumber(4)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="4" transitionTime={500} trigger="&nbsp;  4. Make play an opportunity." open={open === "4"} onOpening={() => setNumber(4)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>I tailored play specifically to the problems we were having around communication by curating communication-based activities to motivate the team to talk to each other.</p>
                 <br />

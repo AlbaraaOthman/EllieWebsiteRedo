@@ -86,13 +86,13 @@ function GWRDScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="2" trigger="&nbsp; 2. Do the background work." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="2" transitionTime={500} trigger="&nbsp; 2. Do the background work." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 I felt like I wasn’t contributing at all, but I found my role in motivating Sam through providing constructive feedback on her designs and coming up with concepts and directions that we could take the project in. I managed the development of the project by highlighting when we needed to make a decision and move on, and assisted in organising the content for the client presentation; namely in making sure we included several directions for Thorranze to provide feedback on before converging on one idea.
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="3" trigger="&nbsp;  3. Give credit where credit is due." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="3" transitionTime={500} trigger="&nbsp;  3. Give credit where credit is due." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 For my own conscience, but also to distinguish what kind of leader I wanted to be, I made sure to highlight Sam’s work during the client presentation and give her the credit for completing all of the design work to such a high standard. I maintained that the project was collaborative due to my role in the background.                <div className='h-[20px]'></div>
               </div>
