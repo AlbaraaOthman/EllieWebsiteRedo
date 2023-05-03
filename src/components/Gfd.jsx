@@ -5,21 +5,24 @@ Command: npx gltfjsx@6.1.4 gfd.gltf
 
 import React, { useRef } from 'react'
 import { useGLTF, PerspectiveCamera } from '@react-three/drei'
+import { Flex, Box } from "@react-three/flex";
 
 export default function Model(props) {
   const { nodes, materials } = useGLTF('/EllieWebsiteRedo/gfd.gltf')
   return (
-    <group {...props} dispose={null}>
-      <group position={[-0.07, 0.01, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={1}>
-          <group position={[0, 0.85, 1.2]} rotation={[-Math.PI, 0, 0]}>
-            <mesh geometry={nodes.Body1.geometry} material={materials['Concrete_Brushed_01 2']} scale={20} />
-            <mesh geometry={nodes.Body14.geometry} material={materials['Concrete_Brushed_01 2']} scale={20} />
+    <Box width="auto" height="auto" flexGrow={0.5} centerAnchor>
+      <group {...props} dispose={null} scale={0.8}>
+        <group position={[-0.07, 0.01, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
+          <group scale={1}>
+            <group position={[0, 0.85, 1.2]} rotation={[-Math.PI, 0, 0]}>
+              <mesh geometry={nodes.Body1.geometry} material={materials['Concrete_Brushed_01 2']} scale={20} />
+              <mesh geometry={nodes.Body14.geometry} material={materials['Concrete_Brushed_01 2']} scale={20} />
+            </group>
           </group>
         </group>
+        <PerspectiveCamera makeDefault={false} fov={35} position={[-3, 0, 0.1]} rotation={[-15, 0, 0]} />
       </group>
-      <PerspectiveCamera makeDefault={false} fov={35} position={[0, 10, 43.7]} rotation={[-15, 0, 0]} />
-    </group>
+    </Box>
   )
 }
 
