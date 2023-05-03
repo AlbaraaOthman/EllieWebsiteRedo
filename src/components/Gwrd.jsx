@@ -12,8 +12,8 @@ export default function Model(props) {
     <group {...props} dispose={null}>
       <group position={[0, 0.02, 0]}>
         <group scale={0.1}>
-          <mesh geometry={nodes.Body1.geometry} material={materials['Plastic - Matte (Gray) (1)']} scale={500} />
-          <mesh geometry={nodes.Body1_2.geometry} material={materials.Gelatin} scale={500} />
+          <mesh geometry={nodes.Body1.geometry} material={materials['Plastic - Matte (Gray) (1)']} scale={800} />
+          <mesh geometry={nodes.Body1_2.geometry} material={materials.Gelatin} scale={800} />
         </group>
       </group>
       <PerspectiveCamera makeDefault={false} far={2} near={0} fov={34.52} position={[0.5, 0.32, 0.5]} rotation={[-0.36, 0.75, 0.25]} />

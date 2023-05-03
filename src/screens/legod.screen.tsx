@@ -106,7 +106,7 @@ function LegodScreen() {
     <>
       <div className={"w-screen h-screen grid grid-cols-12 grid-rows-9 gap-5 bg-darkback z-0"}>
         <DrawingArea onClearLines={undefined} clearLines={undefined} />
-        <div id="Draw" className={"col-start-2 col-end-6 row-start-2 row-end-7 z-0"}>
+        <div id="Draw" className={"col-start-2 col-end-7 row-start-2 row-end-9 row-span-6 z-0"}>
           <>
             <Canvas id="Obj" className="canvas" >
               <OrbitControls enableZoom={false} /> //allows 3d rotation, also says no zooming!
@@ -155,7 +155,7 @@ function LegodScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="4" trigger="&nbsp;  4. Make play an opprtunity." open={open === "4"} onOpening={() => setNumber(4)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="4" trigger="&nbsp;  4. Make play an opportunity." open={open === "4"} onOpening={() => setNumber(4)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>I tailored play specifically to the problems we were having around communication by curating communication-based activities to motivate the team to talk to each other.</p>
                 <br />

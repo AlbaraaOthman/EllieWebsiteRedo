@@ -291,7 +291,7 @@ function FrontScreen() {
 
           <div id="box9" className={`bg-opacity-0	box ` + (floatingTime ? `col-start-10 col-end-13 row-start-7 row-end-10 ` : `  absolute   ` + (controlFlag ? `duration-5000` : `duration-5000`))} style={(floatingTime ? {} : { top: toparrnew[9], left: leftarrnew[9] })}   >
             <Canvas className="canvas" onClick={() => navigation.navigate('Boardy')} >
-              <OrbitControls enableZoom={true} autoRotate /> //allows 3d rotation, also says no zooming!
+              <OrbitControls enableZoom={false} autoRotate /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
               <Boardy />

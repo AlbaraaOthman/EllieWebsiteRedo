@@ -62,7 +62,7 @@ function GestareScreen() {
     <>
       <div className={"w-screen h-screen grid grid-cols-12 grid-rows-9 gap-5 bg-darkback z-0"}>
         <DrawingArea onClearLines={undefined} clearLines={undefined} />
-        <div id="Draw" className={"col-start-2 col-end-6 row-start-2 row-end-7 z-0"}>
+        <div id="Draw" className={"col-start-2 col-end-7 row-start-2 row-end-9 row-span-6  z-0"}>
           <>
             <Canvas id="Obj" className="canvas" >
               <OrbitControls enableZoom={false} /> //allows 3d rotation, also says no zooming!

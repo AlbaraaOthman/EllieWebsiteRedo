@@ -50,7 +50,7 @@ function LogoScreen() {
   return (
     <>
       <div className={"w-screen h-screen grid grid-cols-12 grid-rows-9 gap-5 bg-darkback"}>
-        <div id="Draw" className={"col-start-2 col-end-6 row-start-2 row-end-7 border-5 border-lightback"}>
+        <div id="Draw" className={"col-start-2 col-end-7 row-start-2 row-end-9 row-span-6  border-5 border-lightback"}>
           {/* <DrawingArea onClearLines={undefined} clearLines={undefined} /> */}
 
           <>

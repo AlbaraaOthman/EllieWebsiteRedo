@@ -80,7 +80,7 @@ function BackScreen() {
   return (
     <>
       <div className={"w-screen h-screen grid grid-cols-12 grid-rows-9 gap-5 " + (playing ? "bg-darkback" : "bg-[#F8F3F4]")}>
-        <div id="Draw" className={"col-start-2 col-end-6 row-start-2 row-end-7 border-5 " + (playing ? "border-lightback" : "border-darkback")}>
+        <div id="Draw" className={"col-start-2 col-end-7 row-start-2 row-end-9 border-5 " + (playing ? "border-lightback" : "border-darkback")}>
           {(playing ?
             <>
               <DrawingArea onClearLines={undefined} clearLines={undefined} />
