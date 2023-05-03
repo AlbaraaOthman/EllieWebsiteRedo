@@ -37,6 +37,44 @@ function GWRDScreen() {
   }
 
   useEffect(() => {
+    const updateFontSize = () => {
+      const screenHeight = window.innerHeight;
+      if (screenHeight >= 1200) {
+        setTextSize("20px");
+        setHeadingSize("20px");
+        setTitleSize("20px");
+
+        setTextSpace("23px");
+        setHeadSpace("24px");
+        setTitlSpace("24px")
+      } else if (screenHeight > 850 && screenHeight < 1200) {
+        setTextSize("16px");
+        setHeadingSize("16px");
+        setTitleSize("16px");
+
+        setTextSpace("18px");
+        setHeadSpace("19px");
+        setTitlSpace("19px")
+      } else if (screenHeight <= 850) {
+        setTextSize("14px");
+        setHeadingSize("14px");
+        setTitleSize("14px");
+
+        setTextSpace("16px");
+        setHeadSpace("17px");
+        setTitlSpace("17px")
+      }
+    };
+
+    updateFontSize(); // set initial font size
+    window.addEventListener("resize", updateFontSize);
+
+    return () => {
+      window.removeEventListener("resize", updateFontSize);
+    };
+  }, []);
+
+  useEffect(() => {
     if (number == 1) {
       setOpen("1");
     } else if (number == 2) {
@@ -76,23 +114,23 @@ function GWRDScreen() {
           <path fill-rule="evenodd" clip-rule="evenodd" d="M1.70639 20.7284C0.764537 19.7738 0.764537 18.2262 1.70639 17.2716L17.0548 1.71593C17.9966 0.761357 19.5237 0.761357 20.4655 1.71593C21.4074 2.6705 21.4074 4.21817 20.4655 5.17274L9.23428 16.5557H42V21.4443H9.23428L20.4655 32.8273C21.4074 33.7818 21.4074 35.3295 20.4655 36.2841C19.5237 37.2386 17.9966 37.2386 17.0548 36.2841L1.70639 20.7284Z" fill="#F8F3F4" stroke="#F8F3F4" />
         </svg>
 
-        <div className={`col-start-7 col-end-11 col-span-2 row-start-2 w-auto h-auto text-lightback z-20 font-neue text-sm/[16px]`}>
+        <div className={`col-start-7 col-end-11 col-span-2 row-start-2 w-auto h-auto text-lightback z-20 font-neue `} style={{ fontSize: textSize , lineHeight: textSpace}}>
           <>
-            <span className="opacity-50 text-head font-neues text-sm/[20px]">How to Model a Collaborative Project</span>
+            <span className="opacity-50 text-head font-neues " style={{ fontSize: titleSize , lineHeight: titlSpace}}>How to Model a Collaborative Project</span>
             <div className='h-[20px]'></div>
-            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Accept your role." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]' >
+            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Accept your role." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish  font-neues' triggerClassName='font-neues' triggerStyle={{fontSize: headingSize, lineHeight: headSpace} } >
               <div className='ml-4'>
                 During the Good Work Recycle project, it was important for me to recognise my strengths and limitations as a Creative Director, acknowledging that it was more efficient to let Sam get on with visually designing since she had already started the project in her own time. We decided not to involve the rest of the team on this occasion because we had other briefs that were more exciting for us to work on.
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="2" transitionTime={500} trigger="&nbsp; 2. Do the background work." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="2" transitionTime={500} trigger="&nbsp; 2. Do the background work." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish  font-neues' triggerClassName='font-neues' triggerStyle={{fontSize: headingSize, lineHeight: headSpace} }>
               <div className='ml-4'>
                 I felt like I wasn’t contributing at all, but I found my role in motivating Sam through providing constructive feedback on her designs and coming up with concepts and directions that we could take the project in. I managed the development of the project by highlighting when we needed to make a decision and move on, and assisted in organising the content for the client presentation; namely in making sure we included several directions for Thorranze to provide feedback on before converging on one idea.
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="3" transitionTime={500} trigger="&nbsp;  3. Give credit where credit is due." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="3" transitionTime={500} trigger="&nbsp;  3. Give credit where credit is due." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish  font-neues' triggerClassName='font-neues' triggerStyle={{fontSize: headingSize, lineHeight: headSpace} }>
               <div className='ml-4'>
                 For my own conscience, but also to distinguish what kind of leader I wanted to be, I made sure to highlight Sam’s work during the client presentation and give her the credit for completing all of the design work to such a high standard. I maintained that the project was collaborative due to my role in the background.                <div className='h-[20px]'></div>
               </div>

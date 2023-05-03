@@ -37,6 +37,44 @@ function GestareScreen() {
   }
 
   useEffect(() => {
+    const updateFontSize = () => {
+      const screenHeight = window.innerHeight;
+      if (screenHeight >= 1200) {
+        setTextSize("20px");
+        setHeadingSize("20px");
+        setTitleSize("20px");
+
+        setTextSpace("23px");
+        setHeadSpace("24px");
+        setTitlSpace("24px")
+      } else if (screenHeight > 850 && screenHeight < 1200) {
+        setTextSize("16px");
+        setHeadingSize("16px");
+        setTitleSize("16px");
+
+        setTextSpace("18px");
+        setHeadSpace("19px");
+        setTitlSpace("19px")
+      } else if (screenHeight <= 850) {
+        setTextSize("14px");
+        setHeadingSize("14px");
+        setTitleSize("14px");
+
+        setTextSpace("16px");
+        setHeadSpace("17px");
+        setTitlSpace("17px")
+      }
+    };
+
+    updateFontSize(); // set initial font size
+    window.addEventListener("resize", updateFontSize);
+
+    return () => {
+      window.removeEventListener("resize", updateFontSize);
+    };
+  }, []);
+
+  useEffect(() => {
     if (number == 1) {
       setOpen("1");
     } else if (number == 2) {
@@ -76,11 +114,11 @@ function GestareScreen() {
           <path fill-rule="evenodd" clip-rule="evenodd" d="M1.70639 20.7284C0.764537 19.7738 0.764537 18.2262 1.70639 17.2716L17.0548 1.71593C17.9966 0.761357 19.5237 0.761357 20.4655 1.71593C21.4074 2.6705 21.4074 4.21817 20.4655 5.17274L9.23428 16.5557H42V21.4443H9.23428L20.4655 32.8273C21.4074 33.7818 21.4074 35.3295 20.4655 36.2841C19.5237 37.2386 17.9966 37.2386 17.0548 36.2841L1.70639 20.7284Z" fill="#F8F3F4" stroke="#F8F3F4" />
         </svg>
 
-        <div className={`col-start-7 col-end-11 col-span-2 row-start-2 w-auto h-auto text-lightback z-20 font-neue text-sm/[16px]`}>
+        <div className={`col-start-7 col-end-11 col-span-2 row-start-2 w-auto h-auto text-lightback z-20 font-neue `} style={{ fontSize: textSize , lineHeight: textSpace}}>
           <>
-            <span className="opacity-50 text-head font-neues text-sm/[20px]">How to Model a Live Brief</span>
+            <span className="opacity-50 text-head font-neues " style={{ fontSize: titleSize , lineHeight: titlSpace}}>How to Model a Live Brief</span>
             <div className='h-[20px]'></div>
-            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Talk about your team." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]' >
+            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Talk about your team." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish  font-neues' triggerClassName='font-neues ' triggerStyle={{fontSize: headingSize, lineHeight: headSpace} }  >
               <div className='ml-4'>
                 <p>I contributed a lot to the agency by finding clients for us to work with. I found this brief by gushing about our agency at every possible moment, and just so happened to do so in front of the right person.</p>
                 <p><br />I didn&rsquo;t want to make the important decision of committing to a live brief without consulting my team, so I updated them on the prospect of working to create marketing materials for a final year film student to gauge their thoughts on whether or not it was a good use of our time.</p>
@@ -88,7 +126,7 @@ function GestareScreen() {
               </div>
               <div className='h-[20px]'></div>
             </Collapsible>
-            <Collapsible className="z-10" id="2" transitionTime={500} trigger="&nbsp; 2. Organise client meetings." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="2" transitionTime={500} trigger="&nbsp; 2. Organise client meetings." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish  font-neues' triggerClassName='font-neues ' triggerStyle={{fontSize: headingSize, lineHeight: headSpace} } >
               <div className='ml-4'>
                 <p>I assumed more of an Admin role in this project, corresponding with the client directly about where and when we would meet and feeding this back to the team.<br/><br/>I had wished that Matthew would take the lead more during our meetings with the client, as I often felt like he wasn&rsquo;t proactive enough in leading the conversation and recording notes from the meetings. I found that, despite this, I was again the only one carrying the conversation and making notes during our meetings, resulting in the client solely corresponding with me rather than Matthew. Due to me consistently setting out goals and ensuring our sessions were productive, it was assumed that I had made a note of the questions we had discussed to ask the client in preparation with the Seniors, when I hadn&rsquo;t because I believed this became Matthew&rsquo;s responsibility once he accepted the lead role.<br/><br/>I highlighted these insights to him during our feedback session at the end of Semester 2, pointing out that regardless of his nomination and acceptance as Project Manager, I felt like the responsibility fell on me to co-ordinate sessions with the client. I thought it was important for him to know this to develop his leadership skills for when this project ultimately continues on post-university.</p>
                 </div>

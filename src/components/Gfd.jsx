@@ -13,8 +13,8 @@ export default function Model(props) {
       <group position={[-0.07, 0.01, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
         <group scale={1}>
           <group position={[0, 0.85, 1.2]} rotation={[-Math.PI, 0, 0]}>
-            <mesh geometry={nodes.Body1.geometry} material={materials['Concrete_Brushed_01 2']} scale={50} />
-            <mesh geometry={nodes.Body14.geometry} material={materials['Concrete_Brushed_01 2']} scale={50} />
+            <mesh geometry={nodes.Body1.geometry} material={materials['Concrete_Brushed_01 2']} scale={20} />
+            <mesh geometry={nodes.Body14.geometry} material={materials['Concrete_Brushed_01 2']} scale={20} />
           </group>
         </group>
       </group>

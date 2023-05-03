@@ -7,24 +7,24 @@ import React, { useRef } from 'react'
 import { useGLTF, PerspectiveCamera } from '@react-three/drei'
 
 export default function Model(props) {
-  const { nodes, materials } = useGLTF('/EllieWebsiteRedo/bd.gltf')
+  const { nodes, materials } = useGLTF('/EllieWebsiteRedo/logo.gltf')
   return (
     <group {...props} dispose={null}>
       <group position={[0.01, 0, 0]}>
-        <group position={[-0.01, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[1.25, 1.25, 0.95]}>
-          <group scale={0.5}>
-            <mesh geometry={nodes.Body1_3.geometry} material={materials['Matte 3']} scale={50} />
-            <mesh geometry={nodes.Body1_4.geometry} material={materials['Brushed Aluminum']} scale={50} />
+        <group position={[-0.01, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.25, 0.25, 0.19]}>
+          <group scale={0.1}>
+            <mesh geometry={nodes.Body1_3.geometry} material={materials['Matte 3']} scale={1} />
+            <mesh geometry={nodes.Body1_4.geometry} material={materials['Brushed Aluminum']} scale={1} />
           </group>
         </group>
         <group position={[-0.24, -0.02, -0.16]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-          <group scale={0.5}>
+          <group scale={0.01}>
             <group position={[-2.54, -0.16, -3.36]}>
-              <mesh geometry={nodes.Body1.geometry} material={materials.Matte} scale={50} />
+              <mesh geometry={nodes.Body1.geometry} material={materials.Matte} scale={10} />
             </group>
             <group position={[-2.54, -0.16, -3.36]}>
-              <mesh geometry={nodes.Body1_2.geometry} material={materials['Glass 2']} position={[-0.63, -1.19, 0]} rotation={[0, 0, 0.65]} scale={[42.95, 38.9, 50]} />
-              <mesh geometry={nodes.Body2.geometry} material={materials['Glass 2']} position={[1.11, -0.31, 0]} rotation={[0, 0, -0.44]} scale={[36.5, 37.4, 50]} />
+              <mesh geometry={nodes.Body1_2.geometry} material={materials['Glass 2']} position={[-0.63, -1.19, 0]} rotation={[0, 0, 0.65]} scale={[8.59, 7.78, 10]} />
+              <mesh geometry={nodes.Body2.geometry} material={materials['Glass 2']} position={[1.11, -0.31, 0]} rotation={[0, 0, -0.44]} scale={[7.3, 7.48, 10]} />
             </group>
           </group>
         </group>

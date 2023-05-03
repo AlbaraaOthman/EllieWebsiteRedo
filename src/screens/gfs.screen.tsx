@@ -37,6 +37,44 @@ function GFSScreen() {
   }
 
   useEffect(() => {
+    const updateFontSize = () => {
+      const screenHeight = window.innerHeight;
+      if (screenHeight >= 1200) {
+        setTextSize("20px");
+        setHeadingSize("20px");
+        setTitleSize("20px");
+
+        setTextSpace("23px");
+        setHeadSpace("24px");
+        setTitlSpace("24px")
+      } else if (screenHeight > 850 && screenHeight < 1200) {
+        setTextSize("16px");
+        setHeadingSize("16px");
+        setTitleSize("16px");
+
+        setTextSpace("18px");
+        setHeadSpace("19px");
+        setTitlSpace("19px")
+      } else if (screenHeight <= 850) {
+        setTextSize("14px");
+        setHeadingSize("14px");
+        setTitleSize("14px");
+
+        setTextSpace("16px");
+        setHeadSpace("17px");
+        setTitlSpace("17px")
+      }
+    };
+
+    updateFontSize(); // set initial font size
+    window.addEventListener("resize", updateFontSize);
+
+    return () => {
+      window.removeEventListener("resize", updateFontSize);
+    };
+  }, []);
+
+  useEffect(() => {
     if (number == 1) {
       setOpen("1");
     } else if (number == 2) {
@@ -76,22 +114,22 @@ function GFSScreen() {
           <path fill-rule="evenodd" clip-rule="evenodd" d="M1.70639 20.7284C0.764537 19.7738 0.764537 18.2262 1.70639 17.2716L17.0548 1.71593C17.9966 0.761357 19.5237 0.761357 20.4655 1.71593C21.4074 2.6705 21.4074 4.21817 20.4655 5.17274L9.23428 16.5557H42V21.4443H9.23428L20.4655 32.8273C21.4074 33.7818 21.4074 35.3295 20.4655 36.2841C19.5237 37.2386 17.9966 37.2386 17.0548 36.2841L1.70639 20.7284Z" fill="#F8F3F4" stroke="#F8F3F4" />
         </svg>
 
-        <div className={`col-start-7 col-end-11 col-span-2 row-start-2 w-auto h-auto text-lightback z-20 font-neue text-sm/[16px]`}>
+        <div className={`col-start-7 col-end-11 col-span-2 row-start-2 w-auto h-auto text-lightback z-20 font-neue `} style={{ fontSize: textSize, lineHeight: textSpace }}>
           <>
-            <span className="opacity-50 text-head font-neues text-sm/[20px]">How to Model a G.F.Smith Brick:Phase 1</span>
+            <span className="opacity-50 text-head font-neues " style={{ fontSize: titleSize, lineHeight: titlSpace }}>How to Model a G.F.Smith Brick:Phase 1</span>
             <div className='h-[20px]'></div>
-            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Set the standard." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]' >
+            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Set the standard." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish font-neues' triggerClassName='font-neues ' triggerStyle={{ fontSize: headingSize, lineHeight: headSpace }} >
               <div className='ml-4'>
                 <p>During phase one of the brief, I found myself leading our ideation sessions, introducing methods from my own experience to motivate the team in coming up with as many ideas as possible using post-it notes and time constraints to fuel ideation. This role was a good fit for me, as I felt like my working method was the driving force behind &amp;.LAB&rsquo;s concept-driven approach to design.<br /><br />At the start of these sessions, I set clear, achievable goals for the team to keep us on track and on time for client presentations. On this occasion I made the team aware of when the pitch would be, and that by the end of our sessions we needed to make final decisions on concept, visuals, paper choice and presentation format. My role was corroborated by Josie and Georgie in their feedback surveys.<br /><br />To motivate the team, I reminded them of our agency&apos;s purpose and encouraged them to question their assumptions; in particular, aiming to bring them round to the idea of making a literal paper brick, regardless of their initial fixation on creating a &ldquo;traditional&rdquo; publication as directed by the brief. I reiterated the &ldquo;&amp;.LAB way&rdquo;, referring back to the brand values I created; reminding them of the reason they wanted to join &amp;.LAB in the first place; pushing the constraints of the brief as far as possible, and using our speculative approach to design to back up our often unconventional design solutions.<br /><br />My contributions facilitated a productive session and led to us achieving outcomes that the team could genuinely be proud of, in line with the out-of-the-box, futuristic reputation we had gained as a brand.<br /><br />I ensured that I provided the Seniors with immediate feedback and validation of their ideas during these sessions, evidencing this &nbsp;specifically through crediting them in the later client pitch. I asked the Seniors for confirmation of my efforts through written feedback.<br /><br />Q: The last time you completed a project, did you receive recognition and can you provide any examples?<br /><br />A1: During the GF Smith brief I felt my ideas like Repap and making a net were encouraged<br /><br />A2: Yes we got credited during the G.F Smith Pitch and during sessions.</p>
               </div>
               <div className='h-[20px]'></div>
             </Collapsible>
-            <Collapsible className="z-10" id="2" transitionTime={500} trigger="&nbsp; 2. Coordinate and delegate." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="2" transitionTime={500} trigger="&nbsp; 2. Coordinate and delegate." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish font-neues' triggerClassName='font-neues ' triggerStyle={{ fontSize: headingSize, lineHeight: headSpace }}>
               <div className='ml-4'>
                 <p>Sam opted to put together the template for the client presentation and made the decision to run a Figma workshop with the Seniors the day before the pitch, by which point we hadn&rsquo;t yet made any final decisions or have anything tangible to show during the presentation. I didn&rsquo;t want to step on Sam&rsquo;s toes, so took Charlotte and myself away from the situation to work on finalising our research and concept.<br /><br />Upon our return, Sam asked &ldquo;did you guys actually do anything?&rdquo;, highlighting to us that their Figma workshop hadn&rsquo;t reaped many rewards, as Matthew confirmed that the session turned into another case of Sam venturing off-topic.<br /><br />Charlotte and I shared our insights with the team, and I made sure the last hour of the session was spent collaboratively finalising the concept, bringing everyone up to our understanding of the research and ensuring everyone was able to feel a sense of achievement and input ahead of the presentation.<br /><br />I was responsible for ensuring that we chose the right paper for the project, outlining to our Seniors the requirements of the paper based on the final concept, but motivating them to provide input on which stock they thought was most appropriate, and why.<br /><br />I set the standard for the copywriting in the pitch, using my previous pitching experience and advising that we lift phrases directly from the brief and slow-walk the client to the sensitive realisation that paper is approaching obsolescence, in order to win the client over gently.</p>              <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="3" transitionTime={500} trigger="&nbsp;  3. Make up for lost time." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="3" transitionTime={500} trigger="&nbsp;  3. Make up for lost time." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish font-neues' triggerClassName='font-neues ' triggerStyle={{ fontSize: headingSize, lineHeight: headSpace }}>
               <div className='ml-4'>
                 <p>Upon the end of the session, we still didn&rsquo;t have a final outcome to show at the pitch. Matthew and I had to take on the responsibility of staying back for hours after the session to refine the concept, providing feedback to each other on ideas, passing our final thoughts on to Charlotte to condense into the copy for the presentation.<br /><br />Matthew and I split up the roles amongst ourselves to fulfil different visual aspects of the concept, it didn&rsquo;t make sense to pass on responsibility for designing visual elements to people who weren&rsquo;t present during our ideation and therefore didn&rsquo;t have a full grasp of the concept. I took on the role of designing the brick, 3D modelling it and rendering images for our presentation.<br /><br />Matthew and I were integral to achieving an actual outcome ahead of our presentation, without our input and management the team would have come across unprepared and unprofessional in front of the client, because there was no evidence of the other directors stepping up to help.</p>              </div>
               <div className='h-[20px]'></div>

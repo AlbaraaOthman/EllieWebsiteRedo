@@ -9,11 +9,11 @@ import { useGLTF, PerspectiveCamera } from '@react-three/drei'
 export default function Model(props) {
   const { nodes, materials } = useGLTF('/EllieWebsiteRedo/smithpost.gltf')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} >
       <group position={[-0.07, 0, -0.06]} rotation={[-Math.PI / 2, 0, 0]}>
         <group scale={1}>
           <group position={[0, 0.85, 1.2]} rotation={[-Math.PI, 0, 0]}>
-            <mesh geometry={nodes.Body1.geometry} material={materials.Concrete_Brushed_01} scale={100} />
+            <mesh geometry={nodes.Body1.geometry} material={materials.Concrete_Brushed_01} scale={60} />
           </group>
         </group>
       </group>

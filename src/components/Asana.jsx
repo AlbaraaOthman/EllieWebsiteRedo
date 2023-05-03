@@ -16,16 +16,16 @@ export default function Model(props) {
         <group position={[0, 0, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
           <group scale={0.1}>
             <group position={[-0.29, 0, 0.26]} rotation={[Math.PI / 2, 0, 0]}>
-              <mesh geometry={nodes.Body1.geometry} material={materials.Plastic} scale={500} />
+              <mesh geometry={nodes.Body1.geometry} material={materials.Plastic} scale={400} />
             </group>
             <group position={[-0.29, 0, 0.26]} rotation={[Math.PI / 2, 0, 0]}>
-              <mesh geometry={nodes.Body1_2.geometry} material={materials.Plastic} scale={500} />
+              <mesh geometry={nodes.Body1_2.geometry} material={materials.Plastic} scale={400} />
             </group>
             <group position={[-0.29, 0, 0.26]} rotation={[Math.PI / 2, 0, 0]}>
-              <mesh geometry={nodes.Body1_3.geometry} material={materials.Plastic} scale={500} />
+              <mesh geometry={nodes.Body1_3.geometry} material={materials.Plastic} scale={400} />
             </group>
             <group position={[-0.29, 0, 0.26]} rotation={[Math.PI / 2, 0, 0]}>
-              <mesh geometry={nodes.Body1_4.geometry} material={materials['Plastic 2']} scale={500} />
+              <mesh geometry={nodes.Body1_4.geometry} material={materials['Plastic 2']} scale={400} />
             </group>
           </group>
         </group>
