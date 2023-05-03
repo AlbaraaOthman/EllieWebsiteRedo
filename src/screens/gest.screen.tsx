@@ -6,154 +6,99 @@ import { RootStackParamList } from './RootStackPrams';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Ironh from '../components/Gestare';
-import Logo from  '../components/Gestare';
-import DrawingArea from '../components/DrawingAreaBack';
+import Asana from '../components/Gestare';
+import DrawingArea from '../components/DrawingArea';
 import { Euler } from 'three';
-type gestScreenProp = StackNavigationProp<RootStackParamList, 'Logo'>;
+import Collapsible from 'react-collapsible';
+type gestareScreenProp = StackNavigationProp<RootStackParamList, 'Asana'>;
 
-function GestScreen() {
-  const navigation = useNavigation<gestScreenProp>();
+function GestareScreen() {
+  const navigation = useNavigation<gestareScreenProp>();
   const [playing, setPlaying] = useState(false);
   const [xLoc, setxloc] = useState(0);
   const [yLoc, setyloc] = useState(0);
   let tempArray = [0, 0];
   const [mousePos, setMousePos] = useState([0]);
   const [movedFlags, setMovedFlag] = useState(0);
-  var movedFlag = 0;
+  const [open, setOpen] = useState("");
+  const [number, setNumber] = useState(0);
   const orbitRef = useRef();
+  const [textSize, setTextSize] = useState("");
+  const [textSpace, setTextSpace] = useState("0");
+  const [headingSize, setHeadingSize] = useState("1");
+  const [headSpace, setHeadSpace] = useState("0");
+  const [titleSize, setTitleSize] = useState("1");
+  const [titlSpace, setTitlSpace] = useState("0");
+
+  const [opened, setOpened] = useState("");
+
+  const setOpens = (id: string) => {
+    setOpened(id);
+  }
 
   useEffect(() => {
-    let myDiv = document.getElementById("Obj");
-    let offsets = myDiv?.getBoundingClientRect();
-    if (offsets?.top !== undefined) {
-      setxloc(offsets?.top);
+    if (number == 1) {
+      setOpen("1");
+    } else if (number == 2) {
+      setOpen("2");
+    } else if (number == 3) {
+      setOpen("3");
+    } else if (number == 4) {
+      setOpen("4");
+    } else if (number == 5) {
+      setOpen("5")
     }
-    if (offsets?.left !== undefined) {
-      setyloc(offsets?.left);
-
+    else if (number == 6) {
+      setOpen("6")
     }
-  }, []);
-
-
-  // const rotateTo = new Euler(0,0,0);
-  // useEffect(() => {
-  //   let random: NodeJS.Timeout;
-  //     random = setInterval(() => {
-  // playingPositions();
-  //       // const dx = mousePos[0] - xLoc;
-  //       // const dy = mousePos[1] - yLoc;
-  //       // // const angleInRadians = Math.atan2(dy, dx);
-  //       // rotateTo = new Euler( 0, angleInRadians, 0, 'XYZ' );
-  //       console.log("Dinosaur");
-  //       // console.log("XPos " + mousePos[0] + " dino " + mousePos[1]);
-  //     }, 5000); // Change 3000 to whatever interval you want in milliseconds
-  //   return () => clearInterval(random);
-  // }, []);
-  useEffect(() => {
-    const handleMouseMove = (event: { clientX: any; clientY: any; }) => {
-      setMousePos([event.clientX, event.clientY]);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  // let rotateTo = new Euler(0, 0, 0);
-
-
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     const dx = mousePos[0] - xLoc;
-  //     const dy = mousePos[1] - yLoc;
-  //     const angleInRadians = Math.atan2(dy, dx);
-  //     console.log(`Dinosaur: ` + angleInRadians);
-
-
-  //   }, 1000);
-  //   return () => {
-  //     clearInterval(intervalId);
-  //   };
-  // }, [mousePos]);
-
-
-  // rotateTo = new Euler(1.3591205608554973, 1.3591205608554973, 1.3591205608554973, 'XYZ');
+    else if (number == 7) {
+      setOpen("7")
+    } else if (number == 0) {
+      setOpen("0");
+    }
+  }, [number]);
 
   return (
     <>
-      <div className={"w-screen h-screen grid grid-cols-12 grid-rows-9 gap-5 " + (playing ? "bg-darkback" : "bg-[#F8F3F4]")}>
-        <div id="Draw" className={"col-start-2 col-end-6 row-start-2 row-end-7 border-5 " + (playing ? "border-lightback" : "border-darkback")}>
-          {(playing ?
-            <>
-              <DrawingArea onClearLines={undefined} clearLines={undefined} />
-
-            </>
-            :
-            <>
-              <Canvas id="Obj" className="canvas" >
-                <OrbitControls enableZoom={false}/> //allows 3d rotation, also says no zooming!
-                <ambientLight intensity={0.5} /> //adds light, stops it from being black
-                <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
-                <Logo />
-              </Canvas>
-            </>
-          )}
+      <div className={"w-screen h-screen grid grid-cols-12 grid-rows-9 gap-5 bg-darkback z-0"}>
+        <DrawingArea onClearLines={undefined} clearLines={undefined} />
+        <div id="Draw" className={"col-start-2 col-end-6 row-start-2 row-end-7 z-0"}>
+          <>
+            <Canvas id="Obj" className="canvas" >
+              <OrbitControls enableZoom={false} /> //allows 3d rotation, also says no zooming!
+              <ambientLight intensity={0.5} /> //adds light, stops it from being black
+              <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
+              <Ironh />
+            </Canvas>
+          </>
         </div>
+        <svg onClick={() => navigation.navigate('Front')} className='w-[20px] h-auto col-start-1 col-span-1 row-start-1 flex items-center justify-center z-20' viewBox="0 0 43 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M1.70639 20.7284C0.764537 19.7738 0.764537 18.2262 1.70639 17.2716L17.0548 1.71593C17.9966 0.761357 19.5237 0.761357 20.4655 1.71593C21.4074 2.6705 21.4074 4.21817 20.4655 5.17274L9.23428 16.5557H42V21.4443H9.23428L20.4655 32.8273C21.4074 33.7818 21.4074 35.3295 20.4655 36.2841C19.5237 37.2386 17.9966 37.2386 17.0548 36.2841L1.70639 20.7284Z" fill="#F8F3F4" stroke="#F8F3F4" />
+        </svg>
 
-        <ol className={"col-start-8	col-end-9 col-span-2 row-start-2 w-auto h-auto " + (!playing ? "text-darkback" : "text-lightback")}>
-          {(playing ?
-            <>
-              <li>This</li>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <li>Is</li>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <li>a</li>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <li>Place</li>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <li>Holder</li>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <li>Text</li>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <li>this</li>
-            </>
-            :
-            <>
-              <li>This</li>
-              <li>Is</li>
-              <li>a</li>
-              <li>Place</li>
-              <li>Holder</li>
-              <li>Text</li>
-              <li>this</li>
-            </>
-          )}
-
-
-        </ol>
-        <button className="bg-[#FF503C] col-start-2	col-end-4 col-span-2 row-start-8 w-auto h-auto" onClick={() => { setPlaying(false) }}>CTRL</button>
-        <button className="bg-[#FF503C] col-start-4	col-end-6 col-span-2 row-start-8 w-auto h-auto" onClick={() => { setPlaying(true) }}>PLAY</button>
-      </div >
-    </>
-  );
+        <div className={`col-start-7 col-end-11 col-span-2 row-start-2 w-auto h-auto text-lightback z-20 font-neue text-sm/[16px]`}>
+          <>
+            <span className="opacity-50 text-head font-neues text-sm/[20px]">How to Model a Live Brief</span>
+            <div className='h-[20px]'></div>
+            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Talk about your team." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]' >
+              <div className='ml-4'>
+                <p>I contributed a lot to the agency by finding clients for us to work with. I found this brief by gushing about our agency at every possible moment, and just so happened to do so in front of the right person.</p>
+                <p><br />I didn&rsquo;t want to make the important decision of committing to a live brief without consulting my team, so I updated them on the prospect of working to create marketing materials for a final year film student to gauge their thoughts on whether or not it was a good use of our time.</p>
+                <p><br />As 1 of 4 Creative Directors, I was conscious not to assume the role of the leader in every project, so I motivated Matthew to step up and take the role of Project Manager, highlighting it as an amazing opportunity for the progression of his career in Graphic Design for Film.</p>              <div className='h-[20px]'></div>
+              </div>
+              <div className='h-[20px]'></div>
+            </Collapsible>
+            <Collapsible className="z-10" id="2" trigger="&nbsp; 2. Organise client meetings." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+              <div className='ml-4'>
+                <p>I assumed more of an Admin role in this project, corresponding with the client directly about where and when we would meet and feeding this back to the team.<br/><br/>I had wished that Matthew would take the lead more during our meetings with the client, as I often felt like he wasn&rsquo;t proactive enough in leading the conversation and recording notes from the meetings. I found that, despite this, I was again the only one carrying the conversation and making notes during our meetings, resulting in the client solely corresponding with me rather than Matthew. Due to me consistently setting out goals and ensuring our sessions were productive, it was assumed that I had made a note of the questions we had discussed to ask the client in preparation with the Seniors, when I hadn&rsquo;t because I believed this became Matthew&rsquo;s responsibility once he accepted the lead role.<br/><br/>I highlighted these insights to him during our feedback session at the end of Semester 2, pointing out that regardless of his nomination and acceptance as Project Manager, I felt like the responsibility fell on me to co-ordinate sessions with the client. I thought it was important for him to know this to develop his leadership skills for when this project ultimately continues on post-university.</p>
+                </div>
+                  <div className='h-[20px]'></div>
+                </Collapsible>
+                </>
+              </div>
+            </div >
+          </>
+          );
 }
 
-export default GestScreen;
+          export default GestareScreen;

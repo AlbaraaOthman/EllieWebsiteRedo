@@ -51,6 +51,9 @@ module.exports = {
         'neues': ["NHaasGroteskDSPro-65Md", 'sans-serif'],
         'gara': ['Garamond ', 'serif']
       },
+      placeholderColor: {
+        'light': '#F8F3F4'
+      }
     },
   },
   plugins: [],

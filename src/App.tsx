@@ -32,19 +32,19 @@ const App = () => {
       <Stack.Navigator screenOptions={{
         headerShown: false
       }}>
-        <Stack.Screen name="Front" component={FrontScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Front" component={FrontScreen} />
         <Stack.Screen name="Back" component={BackScreen} />
-        <Stack.Screen name="Logo" component={LogoScreen}/>
-        <Stack.Screen name="Asana" component={AsanaScreen}/>
-        <Stack.Screen name="Boardy" component={BoardyScreen}/>
-        <Stack.Screen name="Comma" component={CommaScreen}/>
-        <Stack.Screen name="Gest" component={GestScreen}/>
-        <Stack.Screen name="GFPost" component={GFPostScreen}/>
-        <Stack.Screen name="GFS" component={gfsscreen}/>
-        <Stack.Screen name="GWRD" component={GwrdScreen}/>
-        <Stack.Screen name="Inter" component={InterScreen}/>
-        <Stack.Screen name="Legod" component={LegodScreen}/>
+        <Stack.Screen name="Logo" component={LogoScreen} />
+        <Stack.Screen name="Asana" component={AsanaScreen} />
+        <Stack.Screen name="Boardy" component={BoardyScreen} />
+        <Stack.Screen name="Comma" component={CommaScreen} />
+        <Stack.Screen name="Gest" component={GestScreen} />
+        <Stack.Screen name="GFPost" component={GFPostScreen} />
+        <Stack.Screen name="GFS" component={gfsscreen} />
+        <Stack.Screen name="GWRD" component={GwrdScreen} />
+        <Stack.Screen name="Inter" component={InterScreen} />
+        <Stack.Screen name="Legod" component={LegodScreen} />
       </Stack.Navigator>
     </NavigationContainer>
 

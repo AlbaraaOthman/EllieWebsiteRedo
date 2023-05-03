@@ -106,7 +106,7 @@ function BoardyScreen() {
         <div id="Draw" className={"col-start-2 col-end-6 row-start-2 row-end-7 z-0"}>
           <>
             <Canvas id="Obj" className="canvas" >
-              <OrbitControls enableZoom={false} /> //allows 3d rotation, also says no zooming!
+              <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
               <ambientLight intensity={0.5} /> //adds light, stops it from being black
               <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
               <Logo />
@@ -121,7 +121,7 @@ function BoardyScreen() {
           <>
             <span className="opacity-50 text-head font-neues text-sm/[20px]">How to Model a Brand</span>
             <div className='h-[20px]'></div>
-            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Set clear goals." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]' >
+            <Collapsible className="z-10" id="1" transitionTime={500} trigger="&nbsp; 1. Set clear goals." open={"1" === open} onOpening={() => setNumber(1)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]' >
               <div className='ml-4'>
                 <p>I wanted to be the difference and avoid the negative agency experiences we&apos;ve all had previously. It was crucial for me that everyone felt proud of their work and that it wasn&apos;t a waste of their time or mine &mdash; if we don&apos;t feel proud of our work, what will motivate us and our team to put the effort in? I wanted everyone to enjoy themselves and have fun while working on projects.&nbsp;</p>
                 <p><br /></p>
@@ -129,7 +129,7 @@ function BoardyScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="2" trigger="&nbsp; 2. Curate the brand." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="2" trigger="&nbsp; 2. Curate the brand." open={"2" === open} onOpening={() => setNumber(2)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>As Creative Director, curating the tone of voice and brand strategy was of utmost importance. I scoured our independent and joint values and took inspiration from brands we aspired to be like, and considered our target market to design our brand strategy.</p>
                 <p><br /></p>
@@ -141,19 +141,19 @@ function BoardyScreen() {
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="3" trigger="&nbsp;  3. Assign a uniform." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="3" trigger="&nbsp;  3. Assign a uniform." open={open === "3"} onOpening={() => setNumber(3)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 Matthew made sure our uniforms became a reality after Sam and I had the idea in Semester 1. Our uniforms motivated us in the sense that we could all feel like part of an established team, especially during our pitch to G. F. Smith. Our lab coats were a symbol of equality and pride in our team, helping to visualise the equal hierarchy we aimed to achieve.
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="4" trigger="&nbsp;  4. Be the most excited." open={open === "4"} onOpening={() => setNumber(4)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="4" trigger="&nbsp;  4. Be the most excited." open={open === "4"} onOpening={() => setNumber(4)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 As Creative Directors, in line with our tone of voice, we threw professionalism out the window and reminded our team every session that they were part of the best agency, totally unopposed to getting a solid dig in at the other agencies who were, in &.LAB’s opinion, doing incredibly boring work compared to us. We backed up our claims after gaining recognition from a handful of our tutors, peers and mentors as a well-established brand who got everything “absolutely spot on”.
                 <div className='h-[20px]'></div>
               </div>
             </Collapsible>
-            <Collapsible className="z-10" id="5" trigger="&nbsp;  5. Ask for feedback." open={open === "5"} onOpening={() => setNumber(5)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-[red] text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
+            <Collapsible className="z-10" id="5" trigger="&nbsp;  5. Ask for feedback." open={open === "5"} onOpening={() => setNumber(5)} onClosing={() => setNumber(0)} triggerOpenedClassName='text-redish text-sm/[17px] font-neues' triggerClassName='font-neues text-sm/[17px]'>
               <div className='ml-4'>
                 <p>Q1: How did it feel to part of &amp;.LAB the brand, and &amp;.LAB the team?&nbsp;<br /><br />A1: very slay since we are such a great group. The lab coats helped a lot as well. The quality of the agency was definitely maintained during the semester, last year my creative directors really fell off and did not care very much.&nbsp;<br /><br />A2: &amp;.LAB has been my favourite agency experience ever. I&apos;ve been questioning whether graphic design is a route I want to go down, but after being in a subversive and fun agency I feel a lot of my passion is back. I loved the ironic and light-hearted approach to the play activities and pitch decks as it took alot of the pressure off that I normally feel. I feel like I really learnt and grew as a designer and I had alot of fun. I feel like this is how an agency should be.<br /><br />Q2: If you had to repeat Semester 1, would you still want to join &amp;.LAB? Why or why not?<br /><br />A1: Yesssss- because I really enjoyed listening to you the creative directors the way you think and approached things, and I feel like I learnt so much just being around you.&nbsp;<br /><br />A2: Yes i&rsquo;d still want to join &amp;Lab, I love how each member of the team are equal, as in having the opportunity to share ideas and speak up.&nbsp;<br /><br />A3: I still want to join. &amp;LAB was my favorite in semester one. I always want to go back to &amp;lab. I was happy and relaxed in &amp;lab. And this was my first time that the creative director can remember my name.</p>
 
