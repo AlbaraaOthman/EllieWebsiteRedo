@@ -53,6 +53,9 @@ module.exports = {
       },
       placeholderColor: {
         'light': '#F8F3F4'
+      },
+      cursor: {
+        'dot': 'url(dot.png), pointer',
       }
     },
   },

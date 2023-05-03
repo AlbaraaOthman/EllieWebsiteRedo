@@ -9,7 +9,7 @@ import { useGLTF, PerspectiveCamera } from '@react-three/drei'
 export default function Model(props) {
   const { nodes, materials } = useGLTF('/EllieWebsiteRedo/logo.gltf')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={[0.5, 0.5, 0.5]}>
       <group position={[0, 3, 0]}>
         <group position={[2, -2.84, 1.04]} rotation={[0, 0, 0.09]} scale={[49.4, 49.4, 90.97]}>
           <mesh geometry={nodes.svgMesh1_2.geometry} material={materials.Plastic} position={[-0.01, -0.01, -0.01]} scale={[1.12, 1.12, 0.56]} />

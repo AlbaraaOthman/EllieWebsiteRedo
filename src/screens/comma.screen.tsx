@@ -91,7 +91,7 @@ function CommaScreen() {
             :
             <>
               <Canvas id="Obj" className="canvas" >
-                <OrbitControls enableZoom={false}/> //allows 3d rotation, also says no zooming!
+                <OrbitControls enableZoom={true}/> //allows 3d rotation, also says no zooming!
                 <ambientLight intensity={0.5} /> //adds light, stops it from being black
                 <directionalLight position={[-2, 5, 2]} intensity={1} /> // //adds light to give it 3D Effect
                 <Logo />

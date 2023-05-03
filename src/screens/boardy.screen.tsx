@@ -5,8 +5,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './RootStackPrams';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import Ironh from '../components/Bd';
-import Logo from '../components/Bd';
+import Ironh from '../components/Logo';
+import Logo from '../components/Logo';
 import DrawingArea from '../components/DrawingArea';
 import { Euler } from 'three';
 import Collapsible from 'react-collapsible';
@@ -103,7 +103,7 @@ function BoardyScreen() {
     <>
       <div className={"w-screen h-screen grid grid-cols-12 grid-rows-9 gap-5 bg-darkback z-0"}>
         <DrawingArea onClearLines={undefined} clearLines={undefined} />
-        <div id="Draw" className={"col-start-2 col-end-7 row-start-2 row-end-9 row-span-6  z-0"}>
+        <div id="Draw" className={"col-start-2 col-end-7 row-start-2 row-end-9 row-span-6 z-0"}>
           <>
             <Canvas id="Obj" className="canvas" >
               <OrbitControls enableZoom={true} /> //allows 3d rotation, also says no zooming!
