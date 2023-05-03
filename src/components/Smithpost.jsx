@@ -17,7 +17,7 @@ export default function Model(props) {
           </group>
         </group>
       </group>
-      <PerspectiveCamera makeDefault={false} far={2} near={0} fov={20} position={[0, 0, 5]} rotation={[-0.36, 0.75, 0.25]} />
+      <PerspectiveCamera makeDefault={true} fov={35} position={[0, 15, 42.7]} rotation={[-20, 0, 0]} />
     </group>
   )
 }
