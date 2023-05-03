@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/EllieWebsiteRedo/static/css/main.6e4cf29f.css",
-    "main.js": "/EllieWebsiteRedo/static/js/main.32d8c005.js",
+    "main.js": "/EllieWebsiteRedo/static/js/main.a22d77c9.js",
     "static/js/787.56076306.chunk.js": "/EllieWebsiteRedo/static/js/787.56076306.chunk.js",
     "static/media/logo.png": "/EllieWebsiteRedo/static/media/logo.7c537127bfa7875c4643.png",
     "index.html": "/EllieWebsiteRedo/index.html",
     "main.6e4cf29f.css.map": "/EllieWebsiteRedo/static/css/main.6e4cf29f.css.map",
-    "main.32d8c005.js.map": "/EllieWebsiteRedo/static/js/main.32d8c005.js.map",
+    "main.a22d77c9.js.map": "/EllieWebsiteRedo/static/js/main.a22d77c9.js.map",
     "787.56076306.chunk.js.map": "/EllieWebsiteRedo/static/js/787.56076306.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6e4cf29f.css",
-    "static/js/main.32d8c005.js"
+    "static/js/main.a22d77c9.js"
   ]
 }
